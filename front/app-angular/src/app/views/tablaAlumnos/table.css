@@ -54,6 +54,23 @@
     transform: scale(1.05);
 }
 
+#table {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    flex: 1;
+    min-height: 0;
+}
+
+#p-table-wrapper {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Estilos para la cabecera de la tabla de PrimeNG usando ::ng-deep */
 ::ng-deep .p-datatable .p-datatable-thead>tr>th {
     background-color: #1e293b;

@@ -9,17 +9,24 @@ export interface Alumno {
     email: string,
 }
 
+export interface PaginaAlumno {
+    size: number,
+    index: number,
+    pageCount: number,
+    items: Alumno[]
+}
+
 @Injectable({
     providedIn: 'root'
 })
 
 export class AlumnoService {
-    private BASE_URL = 'http://localhost:8080'
+    private BASE_URL = 'http://localhost:8080/api/students'
 
     constructor(private http: HttpClient) { }
 
-    getAlumnos(): Observable<Alumno[]> {
-        return this.http.get<Alumno[]>(`${this.BASE_URL}/alumno`);
+    getAlumnos(page: number, size: number): Observable<PaginaAlumno> {
+        return this.http.get<PaginaAlumno>(`${this.BASE_URL}?index=${page}&size=${size}`);
     }
 
     crearAlumno(nuevoAlumno: Alumno): Observable<Alumno> {
