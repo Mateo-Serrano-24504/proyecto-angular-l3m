@@ -1,5 +1,6 @@
 package backend.Aplicacion.mapper.estudianteMapper;
 
+import backend.Aplicacion.dto.estudiante.ListarEstudianteDTORsponse;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 
@@ -24,5 +25,15 @@ public class StudentMapper {
         model.setEmail(entity.getEmail());
         model.setDni(entity.getDni());
         return model;
+    }
+
+    public static ListarEstudianteDTORsponse toDto(EstudianteModel model) {
+        return new ListarEstudianteDTORsponse(
+                model.getId(),
+                model.getNombre(),
+                model.getApellido(),
+                model.getEmail(),
+                model.getDni()
+        );
     }
 }
