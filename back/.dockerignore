@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+.cursor/
+
+target/
+*/test/
+
+.git/
+.gitignore
+.gitattributes
+
+Dockerfile
+compose.yml
+
+*.md
+*.log
+.env*
