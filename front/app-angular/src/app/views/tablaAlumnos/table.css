@@ -25,6 +25,17 @@
     margin: 0;
 }
 
+.btn-editar {
+    background-color: #1e293b;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    background: #334155;
+    transform: scale(1.05);
+}
+
 .btn-back {
     position: absolute;
     left: 0;
