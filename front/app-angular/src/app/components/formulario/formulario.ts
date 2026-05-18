@@ -1,7 +1,7 @@
 import { Component, effect, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { Alumno } from '../../views/tablaAlumnos/service/alumnoServis';
+import { Alumno, AlumnoService } from '../../views/tablaAlumnos/service/alumnoServis';
 
 import { z } from 'zod';
 
@@ -30,7 +30,9 @@ export class Formulario {
   alumno = input<Alumno | null>(null);
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private alumnoService: AlumnoService
+  ) {
     this.form = this.fb.group({
       nombre: [''],
       apellido: [''],
@@ -57,20 +59,27 @@ export class Formulario {
   }
 
   onSubmit() {
-    const result = userSchema.safeParse(this.form.value);
+  const result = userSchema.safeParse(this.form.value);
 
-    if (!result.success) {
-      this.errors = result.error.flatten().fieldErrors;
-
-      return;
-    }
-
-    this.errors = {};
-
-    console.log('Formulario válido');
-    console.log(result.data);
-    this.onCerrar();
+  if (!result.success) {
+    this.errors = result.error.flatten().fieldErrors;
+    return;
   }
+
+  this.errors = {};
+
+  const alumnoActual = this.alumno();
+
+  if (alumnoActual?.id) {
+    this.alumnoService.actualizarAlumno(alumnoActual.id, result.data).subscribe(() => {
+      this.onCerrar();
+    });
+  } else {
+    this.alumnoService.crearAlumno(result.data).subscribe(() => {
+      this.onCerrar();
+    });
+  }
+}
 
 
 }
