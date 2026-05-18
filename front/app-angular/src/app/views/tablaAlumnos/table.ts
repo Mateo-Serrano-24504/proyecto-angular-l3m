@@ -1,19 +1,55 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { Router, RouterLink } from "@angular/router";
+import { Router } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
-import { Alumno } from './service/alumnoServis';
+import { AlumnoService, Alumno } from './service/alumnoServis';
+import { PageNav } from './components/page-nav/page-nav';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   // Agregar los imports de este componente
-  imports: [TableModule, Formulario],
+  imports: [TableModule, Formulario, PageNav],
   templateUrl: './table.html',
   styleUrl: './table.css'
 })
-export class TableComponent {
-  constructor(private router: Router) { }
+export class TableComponent implements OnInit {
+  alumnos = signal<Alumno[]>([]);
+  pagina = signal<number>(0);
+  longitudPagina = signal<number>(10);
+  totalPaginas = signal<number>(0);
+
+  constructor(
+    private router: Router,
+    private service: AlumnoService
+  ) {}
+
+  ngOnInit(): void {
+    this.callPage();
+  }
+
+  callPage() {
+    this.service.getAlumnos(this.pagina(), this.longitudPagina()).subscribe((res) => {
+      this.alumnos.set(res.items);
+      this.totalPaginas.set(res.pageCount);
+    });
+  }
+  nextPage() {
+    if (this.pagina() + 1 < this.totalPaginas()) {
+      this.pagina.set(this.pagina() + 1);
+      this.callPage();
+    }
+  }
+  previousPage() {
+    if (this.pagina() > 0) {
+      this.pagina.set(this.pagina() - 1);
+      this.callPage();
+    }
+  }
+  goToPage(page: number) {
+    this.pagina.set(page);
+    this.callPage();
+  }
 
   navigateToHome() {
     this.router.navigate([''])
@@ -34,15 +70,7 @@ export class TableComponent {
   }
 
   editarAlumno(alumno: Alumno) {
-  this.alumnoSeleccionado.set(alumno);
-  this.mostrarFormulario.set(true);
-}
-
-
-  alumnos = [
-    { nombre: 'Juan', apellido: 'Pérez', dni: '12345678', email: 'juan@example.com', notas: 8 },
-    { nombre: 'María', apellido: 'García', dni: '87654321', email: 'maria@example.com', notas: 9 },
-    { nombre: 'Carlos López', apellido: 'López', dni: '11223344', email: 'carlos@example.com', notas: 6 },
-    { nombre: 'Ana Martínez', apellido: 'Martínez', dni: '44332211', email: 'ana@example.com', notas: 10 }
-  ];
+    this.alumnoSeleccionado.set(alumno);
+    this.mostrarFormulario.set(true);
+  }
 }

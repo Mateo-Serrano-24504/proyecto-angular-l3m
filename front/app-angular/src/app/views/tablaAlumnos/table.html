@@ -13,34 +13,45 @@
 
     </div>
 
-    <p-table [value]="alumnos" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template #header>
-            <tr>
-                <th>Nombre</th>
-                <th>DNI</th>
-                <th>Email</th>
-                <th style="text-align: center;">Notas</th>
-                <th style="text-align: center;">Acciones</th>
-            </tr>
-        </ng-template>
-        <ng-template #body let-alumno>
-            <tr>
-                <td>{{ alumno.nombre }}</td>
-                <td>{{ alumno.dni }}</td>
-                <td>{{ alumno.email }}</td>
-                <td>
-                    <button class="button">
-                        cargar notas
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn-primary btn-sm" (click)="editarAlumno(alumno)">
-                        Editar
-                    </button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+    <div id="table">
+        <div id="p-table-wrapper">
+            <p-table [scrollable]="true" scrollHeight="flex" [value]="alumnos()" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template #header>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th style="text-align: center;">Notas</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-alumno>
+                    <tr>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>{{ alumno.dni }}</td>
+                        <td>{{ alumno.email }}</td>
+                        <td>
+                            <button class="button">
+                                cargar notas
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" (click)="editarAlumno(alumno)">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <app-page-nav
+            (nextPage)="nextPage()"
+            (previousPage)="previousPage()"
+            (goToPage)="goToPage($event)"
+            [pageCount]="totalPaginas()"
+            [currentPage]="pagina() + 1"
+        ></app-page-nav>
+    </div>
 </div>
 
 @if (mostrarFormulario()) {
