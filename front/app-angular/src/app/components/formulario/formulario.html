@@ -1,6 +1,6 @@
   <div class="card">
 
-    <h2>Registrar Alumno</h2>
+    <h2>{{ alumno() ? 'Editar Alumno' : 'Registrar Alumno' }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 

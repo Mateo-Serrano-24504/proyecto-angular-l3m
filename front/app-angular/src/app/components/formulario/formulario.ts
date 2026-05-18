@@ -1,6 +1,7 @@
-import { Component, output } from '@angular/core';
+import { Component, effect, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { Alumno } from '../../views/tablaAlumnos/service/alumnoServis';
 
 import { z } from 'zod';
 
@@ -26,12 +27,28 @@ export class Formulario {
 
   form!: FormGroup;
 
+  alumno = input<Alumno | null>(null);
+
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       nombre: [''],
       apellido: [''],
       email: [''],
       dni: [''],
+    });
+
+    effect(() => {
+      const alumno = this.alumno();
+    
+      if (alumno) {
+        this.form.patchValue({
+          nombre: alumno.nombre,
+          apellido: alumno.apellido,
+          email: alumno.email,
+          dni: String(alumno.dni),
+        });
+      }
     });
   }
 
