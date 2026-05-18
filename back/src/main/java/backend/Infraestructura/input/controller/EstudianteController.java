@@ -1,6 +1,6 @@
 package backend.Infraestructura.input.controller;
 
-import backend.Aplicacion.dto.estudiante.ListarEstudianteDTORsponse;
+import backend.Aplicacion.dto.estudiante.ListarEstudianteDTOResponse;
 import backend.Aplicacion.dto.estudiante.ObtenerEstudiantePorIdDTOResponse;
 import backend.Aplicacion.dto.estudiante.RegistrarEstudianteDTORequest;
 import backend.Aplicacion.dto.paginacion.PageRequestDTO;
@@ -11,6 +11,9 @@ import backend.Dominio.puertos.in.Student.ObtenerEstudiantePorIdPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import backend.Aplicacion.dto.estudiante.ActualizarEstudianteDTORequest;
+import backend.Dominio.puertos.in.Student.ActualizarEstudiante;
+
 
 @RestController
 @RequestMapping("/api/students")
@@ -20,6 +23,8 @@ public class EstudianteController {
 
     private final RegistrarEstudianteUseCase registrarEstudianteUseCase;
     private final ListarEstudiantesPort listarEstudiantesPort;
+    private final ActualizarEstudiante actualizarEstudiante;
+
     private final ObtenerEstudiantePorIdPort obtenerEstudiantePorId;
 
     @PostMapping
@@ -29,9 +34,20 @@ public class EstudianteController {
     }
 
     @GetMapping
-    public PageResponseDTO<ListarEstudianteDTORsponse> listar(PageRequestDTO dto) {
+    public PageResponseDTO<ListarEstudianteDTOResponse> listar(PageRequestDTO dto) {
         return this.listarEstudiantesPort.ejecutar(dto);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ListarEstudianteDTOResponse> actualizarEstudiante(
+            @PathVariable Long id,
+            @RequestBody ActualizarEstudianteDTORequest dto
+    ) {
+        ListarEstudianteDTOResponse estudiante = actualizarEstudiante.ejecutar(id, dto);
+        return ResponseEntity.ok(estudiante);
+    }
+
+
 
     @GetMapping("/{id}")
     public ObtenerEstudiantePorIdDTOResponse obtenerEstudiantePorId(@PathVariable Long id) {

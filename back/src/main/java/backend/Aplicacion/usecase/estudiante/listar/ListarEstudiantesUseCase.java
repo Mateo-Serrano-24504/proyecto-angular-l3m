@@ -1,6 +1,6 @@
 package backend.Aplicacion.usecase.estudiante.listar;
 
-import backend.Aplicacion.dto.estudiante.ListarEstudianteDTORsponse;
+import backend.Aplicacion.dto.estudiante.ListarEstudianteDTOResponse;
 import backend.Aplicacion.dto.paginacion.PageRequestDTO;
 import backend.Aplicacion.dto.paginacion.PageResponseDTO;
 import backend.Aplicacion.mapper.estudianteMapper.StudentMapper;
@@ -17,7 +17,7 @@ public class ListarEstudiantesUseCase implements ListarEstudiantesPort {
     private final EstudianteRepositoryPort repository;
 
     @Override
-    public PageResponseDTO<ListarEstudianteDTORsponse> ejecutar(PageRequestDTO dto) {
+    public PageResponseDTO<ListarEstudianteDTOResponse> ejecutar(PageRequestDTO dto) {
         PageRequest request = PaginationDtoMapper.toPageRequest(dto);
         return PaginationDtoMapper.toPageResponseDTO(
                 this.repository

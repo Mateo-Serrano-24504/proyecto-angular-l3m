@@ -67,7 +67,9 @@ export class TableComponent implements OnInit {
 
   cerrarFormulario() {
     this.mostrarFormulario.set(false);
+    this.callPage();
   }
+
 
   editarAlumno(alumno: Alumno) {
     this.alumnoSeleccionado.set(alumno);
