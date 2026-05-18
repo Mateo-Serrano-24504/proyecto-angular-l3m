@@ -16,7 +16,7 @@ public class ActualizarEstudianteUseCase implements ActualizarEstudiante {
 
     @Override
     public ListarEstudianteDTOResponse ejecutar(Long id, ActualizarEstudianteDTORequest req) {
-        EstudianteModel estudiante = repository.obtenerPorId(id);
+        EstudianteModel estudiante = repository.buscarPorId(id);
 
         estudiante.setNombre(req.nombre());
         estudiante.setApellido(req.apellido());
