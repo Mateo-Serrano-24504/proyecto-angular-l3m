@@ -7,4 +7,5 @@ import backend.Dominio.modelo.EstudianteModel;
 public interface EstudianteRepositoryPort {
     EstudianteModel guardar(EstudianteModel estudentiante);
     PageResponse<EstudianteModel> listar(PageRequest request);
+    EstudianteModel buscarPorId(Long id);
 }

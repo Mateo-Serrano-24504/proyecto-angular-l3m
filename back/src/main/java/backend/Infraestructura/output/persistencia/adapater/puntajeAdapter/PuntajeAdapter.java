@@ -1,8 +1,8 @@
 package backend.Infraestructura.output.persistencia.adapater.puntajeAdapter;
 
 import backend.Aplicacion.mapper.puntajeMapper.PuntajeMapper;
+import backend.Aplicacion.specification.PuntajeTieneEstudianteIdSpecification;
 import backend.Dominio.modelo.PuntajeModel;
-import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
@@ -12,6 +12,8 @@ import backend.Infraestructura.output.persistencia.repository.materia.MateriaJpa
 import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @AllArgsConstructor
@@ -34,5 +36,16 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
         PuntajeEntity saved = puntajeJpaRepository.save(entity);
 
         return PuntajeMapper.toModel(saved);
+    }
+
+    @Override
+    public List<PuntajeModel> buscarPorIdDeAlumno(Long id) {
+        return this.puntajeJpaRepository
+                .findAll(
+                        PuntajeTieneEstudianteIdSpecification.hasEstudianteId(id)
+                )
+                .stream()
+                .map(PuntajeMapper::toModel)
+                .toList();
     }
 }

@@ -34,4 +34,12 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
                         .map(StudentMapper::toModel)
         );
     }
+
+    @Override
+    public EstudianteModel buscarPorId(Long id) {
+        return this.estudianteJpaRepository
+                .findById(id)
+                .map(StudentMapper::toModel)
+                .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"));
+    }
 }
