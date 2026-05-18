@@ -35,18 +35,20 @@ export class TableComponent implements OnInit {
     });
   }
   nextPage() {
-    console.log("NEXT");
     if (this.pagina() + 1 < this.totalPaginas()) {
       this.pagina.set(this.pagina() + 1);
       this.callPage();
     }
   }
   previousPage() {
-    console.log("PREV");
     if (this.pagina() > 0) {
       this.pagina.set(this.pagina() - 1);
       this.callPage();
     }
+  }
+  goToPage(page: number) {
+    this.pagina.set(page);
+    this.callPage();
   }
 
   navigateToHome() {

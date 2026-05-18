@@ -1,5 +1,4 @@
 import { Component, input, output } from '@angular/core';
-import { AlumnoService } from '../../service/alumnoServis';
 
 @Component({
   selector: 'app-page-button',

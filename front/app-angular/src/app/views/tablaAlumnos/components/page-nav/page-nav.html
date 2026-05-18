@@ -4,6 +4,11 @@
         text="Anterior"
         (clicked)="emitPreviousPage()"
     ></app-page-button>
+    <app-page-selector
+        [pageCount]="pageCount()"
+        [currentPage]="currentPage()"
+        (pageSelector)="emitGoToPage($event)"
+    ></app-page-selector>
     <app-page-button
         class="page-btn"
         text="Siguiente"
