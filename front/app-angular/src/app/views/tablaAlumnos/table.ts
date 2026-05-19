@@ -4,12 +4,14 @@ import { Router } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
 import { AlumnoService, Alumno } from './service/alumnoServis';
 import { PageNav } from './components/page-nav/page-nav';
+import { PuntajeService } from './service/puntajesService';
+import { FormularioNota } from '../../components/formulario/formulario-nota/formulario-nota';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   // Agregar los imports de este componente
-  imports: [TableModule, Formulario, PageNav],
+  imports: [TableModule, Formulario, FormularioNota, PageNav],
   templateUrl: './table.html',
   styleUrl: './table.css'
 })
@@ -21,7 +23,8 @@ export class TableComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: AlumnoService
+    private service: AlumnoService,
+    private puntajeService: PuntajeService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +61,8 @@ export class TableComponent implements OnInit {
   // Estado del modal (equivalente a useState en React)
   mostrarFormulario = signal(false);
   alumnoSeleccionado = signal<Alumno | null>(null);
+  mostrarFormularioNota = signal(false);
+  alumnoSeleccionadoNota = signal<Alumno | null>(null);
 
 
   abrirFormulario() {
@@ -74,5 +79,20 @@ export class TableComponent implements OnInit {
   editarAlumno(alumno: Alumno) {
     this.alumnoSeleccionado.set(alumno);
     this.mostrarFormulario.set(true);
+  }
+
+  abrirFormularioNota(alumno: Alumno) {
+  this.alumnoSeleccionadoNota.set(alumno);
+  this.mostrarFormularioNota.set(true);
+  }
+
+  cerrarFormularioNota() {
+    this.mostrarFormularioNota.set(false);
+    this.alumnoSeleccionadoNota.set(null);
+  }
+
+  cargarNota(alumno: Alumno) {
+    this.alumnoSeleccionadoNota.set(alumno);
+    this.mostrarFormularioNota.set(true);
   }
 }
