@@ -1,0 +1,16 @@
+# Secretos y variables de entorno
+.env
+*.env
+
+# Dependencias de Angular/Node
+node_modules/
+
+# Archivos compilados del Backend (Java/Spring)
+target/
+build/
+.gradle/
+
+# Configuraciones locales de los editores (IntelliJ, VSCode)
+.idea/
+.vscode/
+*.iml

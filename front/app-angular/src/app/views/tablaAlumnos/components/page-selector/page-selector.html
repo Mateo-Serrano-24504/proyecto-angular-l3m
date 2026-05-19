@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="form">
+        <p class="p-text">Página</p>
+        <input
+            class="page-input"
+            type="number"
+            min="1"
+            placeholder="Página"
+            [value]="currentPage()"
+            (input)="setPage($event)"
+            (keydown.enter)="goToPage()"
+        />
+    </div>
+</div>
