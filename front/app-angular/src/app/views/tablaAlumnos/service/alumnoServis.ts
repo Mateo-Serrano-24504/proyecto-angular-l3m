@@ -34,7 +34,10 @@ export class AlumnoService {
     crearAlumno(nuevoAlumno: Alumno): Observable<Alumno> {
         return this.http.post<Alumno>(this.BASE_URL, nuevoAlumno);
     }
-
+    
+    getAlumnoPorId(id: number): Observable<Alumno> {
+        return this.http.get<Alumno>(`${this.BASE_URL}/${id}`,)
+    }
 
     actualizarAlumno(id: number, alumno: Alumno): Observable<Alumno> {
         return this.http.put<Alumno>(`${this.BASE_URL}/${id}`, alumno);
