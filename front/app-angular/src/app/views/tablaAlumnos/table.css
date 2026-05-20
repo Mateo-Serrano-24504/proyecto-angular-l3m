@@ -140,3 +140,14 @@ button {
 .btn-cerrar:hover {
     background-color: #dc2626;
 }
+.enlace-perfil {
+  color: inherit; 
+  text-decoration: none; 
+  transition: all 0.2s ease-in-out; 
+}
+
+.enlace-perfil:hover {
+  text-decoration: underline; 
+  cursor: pointer; 
+  opacity: 0.8; 
+}

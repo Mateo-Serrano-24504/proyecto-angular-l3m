@@ -17,8 +17,7 @@
             <p-table [scrollable]="true" scrollHeight="flex" [value]="alumnos()" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template #header>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <th>Nombre completo</th>
                         <th>DNI</th>
                         <th>Email</th>
                         <th style="text-align: center;">Notas</th>
@@ -27,8 +26,7 @@
                 </ng-template>
                 <ng-template #body let-alumno>
                     <tr>
-                        <td>{{ alumno.nombre }}</td>
-                        <td>{{ alumno.apellido }}</td>
+                        <td > <a class="enlace-perfil" [routerLink]="['/perfil/', alumno.id]">{{ alumno.nombre }} {{ alumno.apellido }}</a></td>
                         <td>{{ alumno.dni }}</td>
                         <td>{{ alumno.email }}</td>
                         <td>
