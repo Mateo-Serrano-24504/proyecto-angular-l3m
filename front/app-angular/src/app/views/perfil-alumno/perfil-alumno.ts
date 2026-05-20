@@ -1,7 +1,7 @@
 import { Component, signal, OnInit, computed } from '@angular/core';
 import { AlumnoService, Alumno } from '../tablaAlumnos/service/alumnoServis';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-perfil-alumno',
@@ -17,7 +17,8 @@ export class PerfilAlumno implements OnInit{
 
   constructor(
     private service: AlumnoService,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -37,7 +38,9 @@ export class PerfilAlumno implements OnInit{
 
     return [...datos.puntajes].sort((a, b) => a.label.localeCompare(b.label));
   });
-  
+  navigateToTableAlumnos(){
+    this.router.navigate(['alumnos'])
+  }
   inicializarPerfil(id: number){
     this.service.getAlumnoPorId(id).subscribe({
       next: (res) => {
