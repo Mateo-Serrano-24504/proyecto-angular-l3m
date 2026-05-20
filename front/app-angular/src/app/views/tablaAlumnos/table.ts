@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
 import { AlumnoService, Alumno } from './service/alumnoServis';
 import { PageNav } from './components/page-nav/page-nav';
@@ -10,8 +10,8 @@ import { FormularioNota } from '../../components/formulario/formulario-nota/form
 @Component({
   selector: 'app-table',
   standalone: true,
-  // Agregar los imports de este componente
-  imports: [TableModule, Formulario, FormularioNota, PageNav],
+
+  imports: [TableModule, Formulario, FormularioNota, PageNav,RouterLink],
   templateUrl: './table.html',
   styleUrl: './table.css'
 })
