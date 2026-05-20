@@ -3,13 +3,18 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 export interface Alumno {
-    id?: number,
-    nombre: string,
-    apellido: string,
-    dni: string,
-    email: string,
+  id?: number;
+  nombre: string;
+  apellido: string;
+  email: string;
+  dni: string;
+  puntajes?: PuntajeAlumno[]; 
 }
-
+export interface PuntajeAlumno {
+  id: number;
+  label: string;
+  value: number;
+}
 
 export interface PaginaAlumno {
     size: number,
