@@ -1,4 +1,4 @@
-package backend.Aplicacion.dto.estudiante;
+package backend.Aplicacion.dto.estudiante.listar;
 
 public record ListarEstudianteDTOResponse(
         Long id,

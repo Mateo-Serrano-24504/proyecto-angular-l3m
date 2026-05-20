@@ -1,9 +1,9 @@
 package backend.Aplicacion.usecase.estudiante.listar;
 
-import backend.Aplicacion.dto.estudiante.ListarEstudianteDTOResponse;
+import backend.Aplicacion.dto.estudiante.listar.ListarEstudianteDTOResponse;
 import backend.Aplicacion.dto.paginacion.PageRequestDTO;
 import backend.Aplicacion.dto.paginacion.PageResponseDTO;
-import backend.Aplicacion.mapper.estudianteMapper.StudentMapper;
+import backend.Aplicacion.mapper.estudiante.listar.ListarEstudiantesMapper;
 import backend.Aplicacion.mapper.paginationMapper.PaginationDtoMapper;
 import backend.Aplicacion.pagination.PageRequest;
 import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ListarEstudiantesUseCase implements ListarEstudiantesPort {
     private final EstudianteRepositoryPort repository;
+    private final ListarEstudiantesMapper mapper;
 
     @Override
     public PageResponseDTO<ListarEstudianteDTOResponse> ejecutar(PageRequestDTO dto) {
@@ -22,7 +23,7 @@ public class ListarEstudiantesUseCase implements ListarEstudiantesPort {
         return PaginationDtoMapper.toPageResponseDTO(
                 this.repository
                         .listar(request)
-                        .map(StudentMapper::toDto)
+                        .map(mapper::toDto)
         );
     }
 }

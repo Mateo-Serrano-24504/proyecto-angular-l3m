@@ -1,6 +1,6 @@
 package backend.Aplicacion.usecase.estudiante.registrar;
 
-import backend.Aplicacion.dto.estudiante.RegistrarEstudianteDTORequest;
+import backend.Aplicacion.dto.estudiante.registrar.RegistrarEstudianteDTORequest;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import lombok.AllArgsConstructor;

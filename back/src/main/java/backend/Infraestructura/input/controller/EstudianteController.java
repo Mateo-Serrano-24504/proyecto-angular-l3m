@@ -1,8 +1,9 @@
 package backend.Infraestructura.input.controller;
 
-import backend.Aplicacion.dto.estudiante.ListarEstudianteDTOResponse;
-import backend.Aplicacion.dto.estudiante.ObtenerEstudiantePorIdDTOResponse;
-import backend.Aplicacion.dto.estudiante.RegistrarEstudianteDTORequest;
+import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTOResponse;
+import backend.Aplicacion.dto.estudiante.listar.ListarEstudianteDTOResponse;
+import backend.Aplicacion.dto.estudiante.obtenerPorId.ObtenerEstudiantePorIdDTOResponse;
+import backend.Aplicacion.dto.estudiante.registrar.RegistrarEstudianteDTORequest;
 import backend.Aplicacion.dto.paginacion.PageRequestDTO;
 import backend.Aplicacion.dto.paginacion.PageResponseDTO;
 import backend.Aplicacion.usecase.estudiante.registrar.RegistrarEstudianteUseCase;
@@ -12,7 +13,7 @@ import backend.Dominio.puertos.in.Student.ObtenerEstudiantePorIdPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import backend.Aplicacion.dto.estudiante.ActualizarEstudianteDTORequest;
+import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTORequest;
 import backend.Dominio.puertos.in.Student.ActualizarEstudiante;
 
 
@@ -41,11 +42,11 @@ public class EstudianteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ListarEstudianteDTOResponse> actualizarEstudiante(
+    public ResponseEntity<ActualizarEstudianteDTOResponse> actualizarEstudiante(
             @PathVariable Long id,
             @RequestBody ActualizarEstudianteDTORequest dto
     ) {
-        ListarEstudianteDTOResponse estudiante = actualizarEstudiante.ejecutar(id, dto);
+        ActualizarEstudianteDTOResponse estudiante = actualizarEstudiante.ejecutar(id, dto);
         return ResponseEntity.ok(estudiante);
     }
 

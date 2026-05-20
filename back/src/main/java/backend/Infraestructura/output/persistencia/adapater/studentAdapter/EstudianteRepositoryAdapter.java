@@ -1,12 +1,12 @@
 package backend.Infraestructura.output.persistencia.adapater.studentAdapter;
 
-import backend.Aplicacion.mapper.estudianteMapper.StudentMapper;
 import backend.Aplicacion.mapper.paginationMapper.PaginationMapper;
 import backend.Aplicacion.pagination.PageRequest;
 import backend.Aplicacion.pagination.PageResponse;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
+import backend.Infraestructura.output.persistencia.mapper.estudiante.EstudianteMapper;
 import backend.Infraestructura.output.persistencia.repository.estudiante.EstudianteJpaRepository;
 import backend.Infraestructura.output.persistencia.specification.EstudianteActivoSpecification;
 import lombok.AllArgsConstructor;
@@ -20,12 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
 
     private final EstudianteJpaRepository estudianteJpaRepository;
+    private final EstudianteMapper mapper;
 
     @Override
     public EstudianteModel guardar(EstudianteModel student) {
-        EstudianteEntity entity = StudentMapper.toEntity(student);
+        EstudianteEntity entity = mapper.toEntity(student);
         EstudianteEntity saved = estudianteJpaRepository.save(entity);
-        return StudentMapper.toModel(saved);
+        return mapper.toModel(saved);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
         return PaginationMapper.toPageResponse(
                 this.estudianteJpaRepository
                         .findAll(EstudianteActivoSpecification.isActive(), pageable)
-                        .map(StudentMapper::toModel)
+                        .map(mapper::toModel)
         );
     }
 
@@ -42,7 +43,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
     public EstudianteModel buscarPorId(Long id) {
         return this.estudianteJpaRepository
                 .findById(id)
-                .map(StudentMapper::toModel)
+                .map(mapper::toModel)
                 .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"))
                 .ifInactiveThrow();
     }
