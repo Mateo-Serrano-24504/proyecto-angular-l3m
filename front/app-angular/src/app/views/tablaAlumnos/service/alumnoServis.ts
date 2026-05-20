@@ -10,12 +10,12 @@ export interface Alumno {
   dni: string;
   puntajes?: PuntajeAlumno[]; 
 }
+
 export interface PuntajeAlumno {
   id: number;
   label: string;
   value: number;
 }
-
 export interface PaginaAlumno {
     size: number,
     index: number,
@@ -39,7 +39,8 @@ export class AlumnoService {
     crearAlumno(nuevoAlumno: Alumno): Observable<Alumno> {
         return this.http.post<Alumno>(this.BASE_URL, nuevoAlumno);
     }
-    
+
+      
     getAlumnoPorId(id: number): Observable<Alumno> {
         return this.http.get<Alumno>(`${this.BASE_URL}/${id}`,)
     }

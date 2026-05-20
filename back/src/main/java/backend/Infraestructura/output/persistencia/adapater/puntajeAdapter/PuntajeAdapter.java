@@ -1,7 +1,7 @@
 package backend.Infraestructura.output.persistencia.adapater.puntajeAdapter;
 
 import backend.Aplicacion.mapper.puntajeMapper.PuntajeMapper;
-import backend.Aplicacion.specification.PuntajeTieneEstudianteIdSpecification;
+import backend.Infraestructura.output.persistencia.specification.PuntajeTieneEstudianteIdSpecification;
 import backend.Dominio.modelo.PuntajeModel;
 import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;

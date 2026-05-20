@@ -1,0 +1,59 @@
+<div class="card">
+
+  <h2>Cargar Nota</h2>
+
+  <p class="student">
+    {{ alumno()?.nombre }} {{ alumno()?.apellido }}
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Materia ID</label>
+        <input
+          type="number"
+          min="1"
+          placeholder="Ingrese ID de materia"
+          formControlName="materiaId"
+        >
+      </div>
+
+      <div class="field">
+        <label>Nota</label>
+        <input
+          type="number"
+          min="0"
+          max="10"
+          step="0.01"
+          placeholder="Ingrese una nota"
+          formControlName="valor"
+        >
+      </div>
+
+    </div>
+
+    @if (error) {
+      <small class="error">{{ error }}</small>
+    }
+
+    <div class="buttons">
+
+      <button class="destructive" type="button" (click)="onCerrar()">
+        Cancelar
+      </button>
+
+      <button class="clear" type="reset">
+        Limpiar Formulario
+      </button>
+
+      <button class="primary" type="submit">
+        Enviar
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

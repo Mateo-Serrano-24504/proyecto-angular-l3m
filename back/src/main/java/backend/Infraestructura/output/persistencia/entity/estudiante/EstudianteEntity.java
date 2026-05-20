@@ -36,4 +36,8 @@ public class EstudianteEntity {
     @Email
     @Column(name = "email")
     private String email;
+
+    @NotNull
+    @Column(name = "active")
+    private Boolean active;
 }
