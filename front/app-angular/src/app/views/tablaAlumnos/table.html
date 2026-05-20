@@ -32,7 +32,7 @@
                         <td>{{ alumno.dni }}</td>
                         <td>{{ alumno.email }}</td>
                         <td>
-                            <button class="button">
+                            <button class="button" (click)="abrirFormularioNota(alumno)">
                                 cargar notas
                             </button>
                         </td>
@@ -62,6 +62,21 @@
             [alumno]="alumnoSeleccionado()"
             (cerrar)="cerrarFormulario()">
         </app-formulario>
+    </div>
+</div>
+}
+
+@if (mostrarFormularioNota()) {
+<div class="modal-overlay" (click)="cerrarFormularioNota()">
+    <div (click)="$event.stopPropagation()">
+    
+        <app-formulario-nota
+    [alumno]="alumnoSeleccionadoNota()"
+    (cerrar)="cerrarFormularioNota()">
+</app-formulario-nota>
+        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">
+            Cerrar
+        </button>
     </div>
 </div>
 }
