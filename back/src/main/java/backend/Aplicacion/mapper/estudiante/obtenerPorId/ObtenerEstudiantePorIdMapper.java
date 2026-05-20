@@ -18,6 +18,9 @@ public interface ObtenerEstudiantePorIdMapper {
     );
 
     @SuppressWarnings("unused")
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "label", source = "materia.nombre")
+    @Mapping(target = "value", source = "valor")
     ObtenerPuntajesPorEstudianteIdDTOResponse toDto(
             PuntajeModel model
     );
