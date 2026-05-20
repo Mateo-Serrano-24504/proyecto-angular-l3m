@@ -8,4 +8,5 @@ public interface EstudianteRepositoryPort {
     EstudianteModel guardar(EstudianteModel estudentiante);
     PageResponse<EstudianteModel> listar(PageRequest request);
     EstudianteModel buscarPorId(Long id);
+    void desactivar(Long id);
 }

@@ -8,12 +8,15 @@ import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 import backend.Infraestructura.output.persistencia.repository.estudiante.EstudianteJpaRepository;
+import backend.Infraestructura.output.persistencia.specification.EstudianteActivoSpecification;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @AllArgsConstructor
+@Transactional
 public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
 
     private final EstudianteJpaRepository estudianteJpaRepository;
@@ -30,7 +33,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
         Pageable pageable = PaginationMapper.toPageable(request);
         return PaginationMapper.toPageResponse(
                 this.estudianteJpaRepository
-                        .findAll(pageable)
+                        .findAll(EstudianteActivoSpecification.isActive(), pageable)
                         .map(StudentMapper::toModel)
         );
     }
@@ -40,6 +43,15 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
         return this.estudianteJpaRepository
                 .findById(id)
                 .map(StudentMapper::toModel)
+                .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"))
+                .ifInactiveThrow();
+    }
+
+    @Override
+    public void desactivar(Long id) {
+         EstudianteEntity entity = this.estudianteJpaRepository
+                .findById(id)
                 .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"));
+         entity.setActive(false);
     }
 }

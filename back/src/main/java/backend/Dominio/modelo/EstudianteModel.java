@@ -8,6 +8,7 @@ public class EstudianteModel {
     private String apellido;
     private String email;
     private int dni;
+    private Boolean active;
 
     public Long getId() {
         return id;
@@ -47,5 +48,20 @@ public class EstudianteModel {
 
     public void setDni(int dni) {
         this.dni = dni;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public EstudianteModel ifInactiveThrow() {
+        if (!active) {
+            throw new RuntimeException("Estudiante inactivo");
+        }
+        return this;
     }
 }

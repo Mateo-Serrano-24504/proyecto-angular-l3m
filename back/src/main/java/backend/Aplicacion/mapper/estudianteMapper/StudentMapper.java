@@ -13,6 +13,7 @@ public class StudentMapper {
         entity.setApellido(model.getApellido());
         entity.setEmail(model.getEmail());
         entity.setDni(model.getDni());
+        entity.setActive(model.getActive());
         return entity;
     }
 
@@ -24,6 +25,7 @@ public class StudentMapper {
         model.setApellido(entity.getApellido());
         model.setEmail(entity.getEmail());
         model.setDni(entity.getDni());
+        model.setActive(entity.getActive());
         return model;
     }
 

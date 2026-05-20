@@ -6,6 +6,7 @@ import backend.Aplicacion.dto.estudiante.RegistrarEstudianteDTORequest;
 import backend.Aplicacion.dto.paginacion.PageRequestDTO;
 import backend.Aplicacion.dto.paginacion.PageResponseDTO;
 import backend.Aplicacion.usecase.estudiante.registrar.RegistrarEstudianteUseCase;
+import backend.Dominio.puertos.in.Student.DesactivarEstudiante;
 import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;
 import backend.Dominio.puertos.in.Student.ObtenerEstudiantePorIdPort;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class EstudianteController {
     private final RegistrarEstudianteUseCase registrarEstudianteUseCase;
     private final ListarEstudiantesPort listarEstudiantesPort;
     private final ActualizarEstudiante actualizarEstudiante;
+    private final DesactivarEstudiante desactivarEstudiante;
 
     private final ObtenerEstudiantePorIdPort obtenerEstudiantePorId;
 
@@ -47,7 +49,10 @@ public class EstudianteController {
         return ResponseEntity.ok(estudiante);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void desactivaEstudiante(@PathVariable Long id) {
+        this.desactivarEstudiante.ejecutar(id);
+    }
 
     @GetMapping("/{id}")
     public ObtenerEstudiantePorIdDTOResponse obtenerEstudiantePorId(@PathVariable Long id) {
