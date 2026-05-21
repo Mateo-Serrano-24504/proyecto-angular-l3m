@@ -5,7 +5,7 @@ import backend.Aplicacion.shared.pagination.PageResponse;
 import backend.Dominio.modelo.EstudianteModel;
 
 public interface EstudianteRepositoryPort {
-    EstudianteModel guardar(EstudianteModel estudentiante);
+    EstudianteModel guardar(EstudianteModel estudiante);
     PageResponse<EstudianteModel> listar(PageRequest request);
     EstudianteModel buscarPorId(Long id);
     void desactivar(Long id);

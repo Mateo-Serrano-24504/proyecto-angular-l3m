@@ -1,7 +1,7 @@
 package backend.Dominio.puertos.in.materia;
 
-import backend.Aplicacion.dto.materia.RegistrarMateriaDTORequest;
+import backend.Aplicacion.dto.materia.MateriaDTORequest;
 
 public interface RegistrarMateria {
-    Long ejecutar (RegistrarMateriaDTORequest req);
+    Long ejecutar (MateriaDTORequest req);
 }

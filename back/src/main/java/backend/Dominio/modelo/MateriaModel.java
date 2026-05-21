@@ -4,7 +4,7 @@ public class MateriaModel {
 
     private Long id;
     private String nombre;
-    private Boolean activo;
+    private Boolean active;
 
     public MateriaModel() {}
 
@@ -24,11 +24,22 @@ public class MateriaModel {
         this.nombre = nombre;
     }
 
-    public Boolean getActivo() {
-        return activo;
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public void activar() {
-        this.activo = true;
+        this.active = true;
+    }
+
+    public MateriaModel ifInactiveThrow() {
+        if (!active) {
+            throw new RuntimeException("Materia inactiva");
+        }
+        return this;
     }
 }
