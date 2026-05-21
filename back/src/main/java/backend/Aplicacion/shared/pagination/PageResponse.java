@@ -1,4 +1,4 @@
-package backend.Aplicacion.pagination;
+package backend.Aplicacion.shared.pagination;
 
 import java.util.List;
 import java.util.function.Function;

@@ -4,8 +4,8 @@ import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTORespo
 import backend.Aplicacion.dto.estudiante.listar.ListarEstudianteDTOResponse;
 import backend.Aplicacion.dto.estudiante.obtenerPorId.ObtenerEstudiantePorIdDTOResponse;
 import backend.Aplicacion.dto.estudiante.registrar.RegistrarEstudianteDTORequest;
-import backend.Aplicacion.dto.paginacion.PageRequestDTO;
-import backend.Aplicacion.dto.paginacion.PageResponseDTO;
+import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
+import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
 import backend.Aplicacion.usecase.estudiante.registrar.RegistrarEstudianteUseCase;
 import backend.Dominio.puertos.in.Student.DesactivarEstudiante;
 import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;

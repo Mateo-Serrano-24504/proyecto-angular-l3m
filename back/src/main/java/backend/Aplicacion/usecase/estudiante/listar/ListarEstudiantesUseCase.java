@@ -1,11 +1,11 @@
 package backend.Aplicacion.usecase.estudiante.listar;
 
 import backend.Aplicacion.dto.estudiante.listar.ListarEstudianteDTOResponse;
-import backend.Aplicacion.dto.paginacion.PageRequestDTO;
-import backend.Aplicacion.dto.paginacion.PageResponseDTO;
+import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
+import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
 import backend.Aplicacion.mapper.estudiante.listar.ListarEstudiantesMapper;
-import backend.Aplicacion.mapper.paginationMapper.PaginationDtoMapper;
-import backend.Aplicacion.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.mapper.PaginationDtoMapper;
+import backend.Aplicacion.shared.pagination.PageRequest;
 import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import lombok.RequiredArgsConstructor;
