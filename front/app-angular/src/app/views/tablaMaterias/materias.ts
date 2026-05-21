@@ -13,7 +13,9 @@ import { Materia, MateriaService } from './service/materiaService';
 export class Materias implements OnInit {
   materias = signal<Materia[]>([]);
   materiaEditandoId = signal<number | null>(null);
+  agregandoMateria = signal(false);
   nombreEditado = '';
+  nombreNuevo = '';
 
   constructor(
     private router: Router,
@@ -35,6 +37,7 @@ export class Materias implements OnInit {
   }
 
   editarMateria(materia: Materia) {
+    this.cancelarNuevaMateria();
     this.materiaEditandoId.set(materia.id);
     this.nombreEditado = materia.nombre;
   }
@@ -53,6 +56,30 @@ export class Materias implements OnInit {
 
     this.materiaService.actualizarMateria(materia.id, { ...materia, nombre }).subscribe(() => {
       this.cancelarEdicion();
+      this.cargarMaterias();
+    });
+  }
+
+  abrirNuevaMateria() {
+    this.cancelarEdicion();
+    this.agregandoMateria.set(true);
+    this.nombreNuevo = '';
+  }
+
+  cancelarNuevaMateria() {
+    this.agregandoMateria.set(false);
+    this.nombreNuevo = '';
+  }
+
+  guardarNuevaMateria() {
+    const nombre = this.nombreNuevo.trim();
+
+    if (!nombre) {
+      return;
+    }
+
+    this.materiaService.crearMateria({ nombre }).subscribe(() => {
+      this.cancelarNuevaMateria();
       this.cargarMaterias();
     });
   }

@@ -6,9 +6,28 @@
         </button>
 
         <h1 class="title">Materias</h1>
+
+        <button class="btn-cargar-alumno" (click)="abrirNuevaMateria()">
+            Agregar Materia
+        </button>
     </div>
 
     <div id="table">
+        @if (agregandoMateria()) {
+            <div class="form-inline-materia">
+                <input
+                    class="input-edicion"
+                    type="text"
+                    [(ngModel)]="nombreNuevo"
+                    placeholder="Nombre de la materia"
+                    (keydown.enter)="guardarNuevaMateria()"
+                    (keydown.escape)="cancelarNuevaMateria()"
+                />
+                <a class="enlace-perfil" (click)="guardarNuevaMateria()">Guardar</a>
+                <a class="enlace-perfil" (click)="cancelarNuevaMateria()">Cancelar</a>
+            </div>
+        }
+
         <div id="p-table-wrapper">
             <p-table [scrollable]="true" scrollHeight="flex" [value]="materias()" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template #header>

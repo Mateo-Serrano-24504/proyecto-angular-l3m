@@ -7,6 +7,10 @@ export interface Materia {
   nombre: string;
 }
 
+export interface MateriaRequest {
+  nombre: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +21,10 @@ export class MateriaService {
 
   getMaterias(): Observable<Materia[]> {
     return this.http.get<Materia[]>(this.BASE_URL);
+  }
+
+  crearMateria(materia: MateriaRequest): Observable<number> {
+    return this.http.post<number>(this.BASE_URL, materia);
   }
 
   actualizarMateria(id: number, materia: Materia): Observable<Materia> {
