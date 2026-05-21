@@ -4,7 +4,7 @@ import backend.Aplicacion.dto.estudiante.obtenerPorId.ObtenerEstudiantePorIdDTOR
 import backend.Aplicacion.mapper.estudiante.obtenerPorId.ObtenerEstudiantePorIdMapper;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.modelo.PuntajeModel;
-import backend.Dominio.puertos.in.Student.ObtenerEstudiantePorIdPort;
+import backend.Dominio.puertos.in.estudiante.ObtenerEstudiantePorIdPort;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
 import lombok.RequiredArgsConstructor;

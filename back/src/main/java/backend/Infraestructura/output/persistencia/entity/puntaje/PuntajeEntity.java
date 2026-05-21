@@ -3,6 +3,7 @@ package backend.Infraestructura.output.persistencia.entity.puntaje;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -25,4 +26,7 @@ public class PuntajeEntity {
     @ManyToOne
     @JoinColumn(name = "materia_id")
     private MateriaEntity materia;
+
+    @NotNull
+    private Boolean activo;
 }
