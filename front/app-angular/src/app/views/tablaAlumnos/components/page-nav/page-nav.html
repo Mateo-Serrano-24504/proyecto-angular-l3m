@@ -1,17 +1,25 @@
-<div>
-    <app-page-button
-        class="page-btn"
-        text="Anterior"
-        (clicked)="emitPreviousPage()"
-    ></app-page-button>
-    <app-page-selector
-        [pageCount]="pageCount()"
-        [currentPage]="currentPage()"
-        (pageSelector)="emitGoToPage($event)"
-    ></app-page-selector>
-    <app-page-button
-        class="page-btn"
-        text="Siguiente"
-        (clicked)="emitNextPage()"
-    ></app-page-button>
+<div class="container mycont">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+                <app-page-button
+                class="page-btn"
+                text="Anterior"
+                (clicked)="emitPreviousPage()"
+            ></app-page-button>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+            <app-page-selector
+                [pageCount]="pageCount()"
+                [currentPage]="currentPage()"
+                (pageSelector)="emitGoToPage($event)"
+            ></app-page-selector>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <app-page-button
+                class="page-btn"
+                text="Siguiente"
+                (clicked)="emitNextPage()"
+            ></app-page-button>
+        </div>
+    </div>
 </div>

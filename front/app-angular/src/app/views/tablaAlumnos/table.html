@@ -1,70 +1,72 @@
 <div class="card">
     <div class="header">
-        <button class="btn-back" (click)="navigateToHome()">
-            <i class="pi pi-arrow-left"></i>
-        </button>
-
-        <h1 class="title">Alumnos</h1>
-
-        <button class="btn-cargar-alumno" (click)="abrirFormulario()">
-            Cargar Alumnos
-        </button>
+        <div class="left">
+            <button class="btn-back" (click)="navigateToHome()">
+                <i class="pi pi-arrow-left"></i>
+            </button>
+        </div>
+        <div class="center">
+            <h1 class="title">Alumnos</h1>
+        </div>
+        <div class="right">
+            <button class="btn-cargar-alumno" (click)="abrirFormulario()">
+                Cargar Alumnos
+            </button>
+        </div>
     </div>
 
     <div id="table">
-        <div>
-            <div class="contenedor-tabla">
-                <table class="table table-striped table-hover tabla-alumnos">
-                    <thead class="cabecera-oscura">
-                        <tr>
-                            <th>Nombre completo</th>
-                            <th>DNI</th>
-                            <th>Email</th>
-                            <th class="columna-acciones">Acciones</th>
-                        </tr>
-                    </thead>
+        <div class="contenedor-tabla">
+            <table class="table table-striped table-hover tabla-alumnos">
+                <thead class="cabecera-oscura">
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th class="columna-acciones">Acciones</th>
+                    </tr>
+                </thead>
 
-                    <tbody>
-                        @for (alumno of alumnos(); track alumno.dni) {
-                        <tr>
-                            <td>
-                                <a [routerLink]="['/perfil/', alumno.id]" class="enlace-perfil ">
-                                    {{ alumno.nombre }} {{ alumno.apellido }}
-                                </a>
-                            </td>
-                            <td>{{ alumno.dni }}</td>
-                            <td>{{ alumno.email }}</td>
+                <tbody>
+                    @for (alumno of alumnos(); track alumno.dni) {
+                    <tr>
+                        <td>
+                            <a [routerLink]="['/perfil/', alumno.id]" class="enlace-perfil ">
+                                {{ alumno.nombre }} {{ alumno.apellido }}
+                            </a>
+                        </td>
+                        <td>{{ alumno.dni }}</td>
+                        <td>{{ alumno.email }}</td>
 
-                            <td class="columna-acciones">
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-desplegable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="pi pi-cog"></i>
-                                    </button>
+                        <td class="columna-acciones">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-desplegable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="pi pi-cog"></i>
+                                </button>
 
-                                    <ul class="dropdown-menu dropdown-menu-end menu-acciones">
-                                        <li><a class="dropdown-item item-accion" (click)="abrirFormularioNota(alumno)">Cargar Notas</a></li>
-                                        <li><a class="dropdown-item item-accion" (click)="editarAlumno(alumno)">Editar</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item item-accion-peligro" (click)="prepararEliminar(alumno)">Eliminar</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        } @empty {
-                        <tr>
-                            <td colspan="4" class="fila-vacia">
-                                No hay alumnos cargados.
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                <ul class="dropdown-menu dropdown-menu-end menu-acciones">
+                                    <li><a class="dropdown-item item-accion" (click)="abrirFormularioNota(alumno)">Cargar Notas</a></li>
+                                    <li><a class="dropdown-item item-accion" (click)="editarAlumno(alumno)">Editar</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item item-accion-peligro" (click)="prepararEliminar(alumno)">Eliminar</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="4" class="fila-vacia">
+                            No hay alumnos cargados.
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        
-        <app-page-nav (nextPage)="nextPage()" (previousPage)="previousPage()" (goToPage)="goToPage($event)"
-            [pageCount]="totalPaginas()" [currentPage]="pagina() + 1"></app-page-nav>
     </div>
+    
+    <app-page-nav (nextPage)="nextPage()" (previousPage)="previousPage()" (goToPage)="goToPage($event)"
+        [pageCount]="totalPaginas()" [currentPage]="pagina() + 1"></app-page-nav>
 </div>
 
 @if (mostrarFormulario()) {
