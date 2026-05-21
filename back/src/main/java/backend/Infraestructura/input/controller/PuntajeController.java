@@ -2,10 +2,10 @@ package backend.Infraestructura.input.controller;
 
 import backend.Aplicacion.dto.puntaje.ObtenerPuntajesDTOResponse;
 import backend.Aplicacion.dto.puntaje.RegistrarPuntajeDTORequest;
-import backend.Aplicacion.usecase.puntaje.Obtener.ObtenerPuntajes;
-import backend.Aplicacion.usecase.puntaje.registrar.RegistrarPuntaje;
 import backend.Dominio.modelo.PuntajeModel;
 import backend.Dominio.puertos.in.puntaje.DesactivarPuntaje;
+import backend.Dominio.puertos.in.puntaje.ObtenerPuntajes;
+import backend.Dominio.puertos.in.puntaje.RegistrarPuntaje;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

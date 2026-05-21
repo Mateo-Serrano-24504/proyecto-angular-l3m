@@ -1,4 +1,4 @@
-package backend.Aplicacion.dto.paginacion;
+package backend.Aplicacion.shared.pagination.dto;
 
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;

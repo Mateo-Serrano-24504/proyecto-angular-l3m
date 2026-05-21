@@ -4,7 +4,7 @@ import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTOReque
 import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTOResponse;
 import backend.Aplicacion.mapper.estudiante.actualizar.ActualizarEstudianteMapper;
 import backend.Dominio.modelo.EstudianteModel;
-import backend.Dominio.puertos.in.Student.ActualizarEstudiante;
+import backend.Dominio.puertos.in.estudiante.ActualizarEstudiante;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

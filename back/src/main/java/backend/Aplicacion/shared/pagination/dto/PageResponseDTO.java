@@ -1,4 +1,4 @@
-package backend.Aplicacion.dto.paginacion;
+package backend.Aplicacion.shared.pagination.dto;
 
 import java.util.List;
 

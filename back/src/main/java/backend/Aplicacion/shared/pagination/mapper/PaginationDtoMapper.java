@@ -1,9 +1,9 @@
-package backend.Aplicacion.mapper.paginationMapper;
+package backend.Aplicacion.shared.pagination.mapper;
 
-import backend.Aplicacion.dto.paginacion.PageRequestDTO;
-import backend.Aplicacion.dto.paginacion.PageResponseDTO;
-import backend.Aplicacion.pagination.PageRequest;
-import backend.Aplicacion.pagination.PageResponse;
+import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
+import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
+import backend.Aplicacion.shared.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.PageResponse;
 
 public class PaginationDtoMapper {
     public static PageRequest toPageRequest(PageRequestDTO dto) {

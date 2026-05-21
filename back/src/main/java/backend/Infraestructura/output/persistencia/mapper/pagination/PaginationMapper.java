@@ -1,7 +1,7 @@
-package backend.Aplicacion.mapper.paginationMapper;
+package backend.Infraestructura.output.persistencia.mapper.pagination;
 
-import backend.Aplicacion.pagination.PageRequest;
-import backend.Aplicacion.pagination.PageResponse;
+import backend.Aplicacion.shared.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.PageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
