@@ -82,7 +82,6 @@ export class TableComponent implements OnInit {
     this.mostrarFormulario.set(true);
   }
 
-  // Funciones
   prepararEliminar(alumno: Alumno) {
     this.alumnoSeleccionado.set(alumno);
     this.mostrarModalEliminar.set(true);
@@ -99,11 +98,10 @@ export class TableComponent implements OnInit {
       this.service.eliminarAlumnoLogico(alumno.id!).subscribe({
         next: () => {
           this.cerrarModalEliminar();
-          this.callPage(); // Recargamos la tabla para que desaparezca la fila
+          this.callPage(); 
         },
         error: (err) => {
           console.error('Error al eliminar:', err);
-          // Opcional: manejar el error
         }
       });
     }

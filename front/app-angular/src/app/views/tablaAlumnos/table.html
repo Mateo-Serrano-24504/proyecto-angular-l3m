@@ -1,5 +1,4 @@
 <div class="card">
-
     <div class="header">
         <button class="btn-back" (click)="navigateToHome()">
             <i class="pi pi-arrow-left"></i>
@@ -13,16 +12,15 @@
     </div>
 
     <div id="table">
-        <div >
-            <div style="overflow: visible;">
-                <table class="table table-striped table-hover align-middle">
-
-                    <thead class="table-dark">
+        <div>
+            <div class="contenedor-tabla">
+                <table class="table table-striped table-hover tabla-alumnos">
+                    <thead class="cabecera-oscura">
                         <tr>
                             <th>Nombre completo</th>
                             <th>DNI</th>
                             <th>Email</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="columna-acciones">Acciones</th>
                         </tr>
                     </thead>
 
@@ -30,46 +28,40 @@
                         @for (alumno of alumnos(); track alumno.dni) {
                         <tr>
                             <td>
-                                <a [routerLink]="['/perfil/', alumno.id]"
-                                    class="text-decoration-none text-reset fw-bold">
+                                <a [routerLink]="['/perfil/', alumno.id]" class="enlace-perfil ">
                                     {{ alumno.nombre }} {{ alumno.apellido }}
                                 </a>
                             </td>
                             <td>{{ alumno.dni }}</td>
                             <td>{{ alumno.email }}</td>
 
-                            <td class="text-center">
+                            <td class="columna-acciones">
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="pi pi-cog"></i>
-</button>
+                                    <button class="btn btn-sm btn-desplegable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="pi pi-cog"></i>
+                                    </button>
 
-                                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                        <li><a class="dropdown-item" style="cursor: pointer;"
-                                                (click)="abrirFormularioNota(alumno)">Cargar Notas</a></li>
-                                        <li><a class="dropdown-item" style="cursor: pointer;"
-                                                (click)="editarAlumno(alumno)">Editar</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-danger" style="cursor: pointer;"
-                                                (click)="prepararEliminar(alumno)">Eliminar</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-end menu-acciones">
+                                        <li><a class="dropdown-item item-accion" (click)="abrirFormularioNota(alumno)">Cargar Notas</a></li>
+                                        <li><a class="dropdown-item item-accion" (click)="editarAlumno(alumno)">Editar</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item item-accion-peligro" (click)="prepararEliminar(alumno)">Eliminar</a></li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
                         } @empty {
                         <tr>
-                            <td colspan="4" class="text-center py-4 text-muted">
+                            <td colspan="4" class="fila-vacia">
                                 No hay alumnos cargados.
                             </td>
                         </tr>
                         }
                     </tbody>
-
                 </table>
             </div>
         </div>
+        
         <app-page-nav (nextPage)="nextPage()" (previousPage)="previousPage()" (goToPage)="goToPage($event)"
             [pageCount]="totalPaginas()" [currentPage]="pagina() + 1"></app-page-nav>
     </div>
@@ -78,29 +70,24 @@
 @if (mostrarFormulario()) {
 <div class="modal-overlay" (click)="cerrarFormulario()">
     <div (click)="$event.stopPropagation()">
-        <app-formulario [alumno]="alumnoSeleccionado()" (cerrar)="cerrarFormulario()">
-        </app-formulario>
+        <app-formulario [alumno]="alumnoSeleccionado()" (cerrar)="cerrarFormulario()"></app-formulario>
     </div>
 </div>
 }
+
 @if (mostrarModalEliminar()) {
 <div class="modal-overlay" (click)="cerrarModalEliminar()">
-    <div class="p-4 rounded shadow-lg text-center text-white"
-        style="background-color: #2b2f33; border: 1px solid #454d55; max-width: 400px; width: 90%;"
-        (click)="$event.stopPropagation()">
+    <div class="modal-confirmacion" (click)="$event.stopPropagation()">
+        <i class="pi pi-exclamation-triangle icono-advertencia"></i>
+        <h3 class="modal-titulo">Confirmar Eliminación</h3>
 
-        <i class="pi pi-exclamation-triangle text-warning mb-3" style="font-size: 2.5rem;"></i>
-        <h3 class="mb-3">Confirmar Eliminación</h3>
+        <p class="modal-texto">¿Estás seguro que deseás eliminar a <strong>{{ alumnoSeleccionado()?.nombre }} {{ alumnoSeleccionado()?.apellido }}</strong>?</p>
+        <p class="modal-subtexto">DNI: {{ alumnoSeleccionado()?.dni }}</p>
 
-        <p class="mb-1">¿Estás seguro que deseás eliminar a <strong>{{ alumnoSeleccionado()?.nombre }} {{
-                alumnoSeleccionado()?.apellido }}</strong>?</p>
-        <p class="text-secondary mb-4">DNI: {{ alumnoSeleccionado()?.dni }}</p>
-
-        <div class="d-flex justify-content-center gap-3">
-            <button class="btn btn-outline-light px-4" (click)="cerrarModalEliminar()">Cancelar</button>
-            <button class="btn btn-danger px-4" (click)="confirmarEliminacion()">Eliminar</button>
+        <div class="modal-botones">
+            <button class="btn btn-cancelar" (click)="cerrarModalEliminar()">Cancelar</button>
+            <button class="btn btn-confirmar-peligro" (click)="confirmarEliminacion()">Eliminar</button>
         </div>
-
     </div>
 </div>
 }
@@ -108,12 +95,8 @@
 @if (mostrarFormularioNota()) {
 <div class="modal-overlay" (click)="cerrarFormularioNota()">
     <div (click)="$event.stopPropagation()">
-
-        <app-formulario-nota [alumno]="alumnoSeleccionadoNota()" (cerrar)="cerrarFormularioNota()">
-        </app-formulario-nota>
-        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">
-            Cerrar
-        </button>
+        <app-formulario-nota [alumno]="alumnoSeleccionadoNota()" (cerrar)="cerrarFormularioNota()"></app-formulario-nota>
+        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">Cerrar</button>
     </div>
 </div>
 }
