@@ -1,4 +1,4 @@
-package backend.Dominio.puertos.in.Student;
+package backend.Dominio.puertos.in.estudiante;
 
 import backend.Aplicacion.dto.estudiante.listar.ListarEstudianteDTOResponse;
 import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;

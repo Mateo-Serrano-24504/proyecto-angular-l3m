@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class RegistrarEstudianteUseCase implements backend.Dominio.puertos.in.Student.RegistrarEstudiante {
+public class RegistrarEstudianteUseCase implements backend.Dominio.puertos.in.estudiante.RegistrarEstudiante {
 
     private final EstudianteRepositoryPort repository;
 

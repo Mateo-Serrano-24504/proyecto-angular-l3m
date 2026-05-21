@@ -1,4 +1,4 @@
-package backend.Infraestructura.output.persistencia.adapater.studentAdapter;
+package backend.Infraestructura.output.persistencia.adapater.estudiante;
 
 import backend.Infraestructura.output.persistencia.mapper.pagination.PaginationMapper;
 import backend.Aplicacion.shared.pagination.PageRequest;

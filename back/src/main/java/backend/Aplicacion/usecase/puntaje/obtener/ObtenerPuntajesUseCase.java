@@ -1,6 +1,7 @@
-package backend.Aplicacion.usecase.puntaje.Obtener;
+package backend.Aplicacion.usecase.puntaje.obtener;
 
 import backend.Aplicacion.dto.puntaje.ObtenerPuntajesDTOResponse;
+import backend.Dominio.puertos.in.puntaje.ObtenerPuntajes;
 import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpaRepository;
 import backend.Infraestructura.output.persistencia.specification.PuntajeActivoSpecification;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +12,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ObtenerPuntajes {
+public class ObtenerPuntajesUseCase implements ObtenerPuntajes {
 
     private final PuntajeJpaRepository puntajeJpaRepository;
 
+    @Override
     public ObtenerPuntajesDTOResponse ejecutar(){
         var puntajes = puntajeJpaRepository.findAll(
                 PuntajeActivoSpecification.isActive()

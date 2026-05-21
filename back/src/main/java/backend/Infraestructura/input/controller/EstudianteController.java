@@ -7,14 +7,14 @@ import backend.Aplicacion.dto.estudiante.registrar.RegistrarEstudianteDTORequest
 import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
 import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
 import backend.Aplicacion.usecase.estudiante.registrar.RegistrarEstudianteUseCase;
-import backend.Dominio.puertos.in.Student.DesactivarEstudiante;
-import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;
-import backend.Dominio.puertos.in.Student.ObtenerEstudiantePorIdPort;
+import backend.Dominio.puertos.in.estudiante.DesactivarEstudiante;
+import backend.Dominio.puertos.in.estudiante.ListarEstudiantesPort;
+import backend.Dominio.puertos.in.estudiante.ObtenerEstudiantePorIdPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import backend.Aplicacion.dto.estudiante.actualizar.ActualizarEstudianteDTORequest;
-import backend.Dominio.puertos.in.Student.ActualizarEstudiante;
+import backend.Dominio.puertos.in.estudiante.ActualizarEstudiante;
 
 
 @RestController
