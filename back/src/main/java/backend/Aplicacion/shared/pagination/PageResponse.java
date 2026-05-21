@@ -1,5 +1,8 @@
 package backend.Aplicacion.shared.pagination;
 
+import backend.Aplicacion.shared.pagination.filter.FilterRequest;
+import backend.Aplicacion.shared.pagination.sort.SortRequest;
+
 import java.util.List;
 import java.util.function.Function;
 
@@ -8,6 +11,7 @@ public record PageResponse<T> (
         Integer index,
         Integer pageCount,
         List<SortRequest> sortRequests,
+        List<FilterRequest> filterRequests,
         List<T> items
 ) {
     public <U> PageResponse<U> map(Function<T, U> mapper) {
@@ -16,6 +20,7 @@ public record PageResponse<T> (
                 index,
                 pageCount,
                 sortRequests,
+                filterRequests,
                 items.stream()
                         .map(mapper)
                         .toList()

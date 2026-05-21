@@ -1,6 +1,6 @@
 package backend.Infraestructura.output.persistencia.mapper.pagination;
 
-import backend.Aplicacion.shared.pagination.SortRequest;
+import backend.Aplicacion.shared.pagination.sort.SortRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

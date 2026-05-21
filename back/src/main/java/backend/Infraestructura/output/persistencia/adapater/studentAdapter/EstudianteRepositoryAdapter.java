@@ -9,8 +9,10 @@ import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteE
 import backend.Infraestructura.output.persistencia.mapper.estudiante.EstudianteMapper;
 import backend.Infraestructura.output.persistencia.repository.estudiante.EstudianteJpaRepository;
 import backend.Infraestructura.output.persistencia.specification.EstudianteActivoSpecification;
+import backend.Infraestructura.output.persistencia.specification.factory.FilterRequestSpecificationBuilderFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
 
     private final EstudianteJpaRepository estudianteJpaRepository;
     private final EstudianteMapper mapper;
+    private final FilterRequestSpecificationBuilderFactory<EstudianteEntity> factory;
 
     @Override
     public EstudianteModel guardar(EstudianteModel student) {
@@ -32,9 +35,15 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
     @Override
     public PageResponse<EstudianteModel> listar(PageRequest request) {
         Pageable pageable = PaginationMapper.toPageable(request);
+        Specification<EstudianteEntity> specification = EstudianteActivoSpecification
+                .isActive()
+                .and(this.factory.build(request.filterRequests()));
         return PaginationMapper.toPageResponse(
                 this.estudianteJpaRepository
-                        .findAll(EstudianteActivoSpecification.isActive(), pageable)
+                        .findAll(
+                                specification,
+                                pageable
+                        )
                         .map(mapper::toModel),
                 request
         );

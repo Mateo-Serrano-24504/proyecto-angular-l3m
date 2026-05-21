@@ -1,4 +1,4 @@
-package backend.Aplicacion.shared.pagination;
+package backend.Aplicacion.shared.pagination.sort;
 
 public record SortRequest (
         String selector,

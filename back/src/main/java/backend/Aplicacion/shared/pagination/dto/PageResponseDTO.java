@@ -1,6 +1,6 @@
 package backend.Aplicacion.shared.pagination.dto;
 
-import backend.Aplicacion.shared.pagination.SortRequest;
+import backend.Aplicacion.shared.pagination.sort.SortRequest;
 
 import java.util.List;
 

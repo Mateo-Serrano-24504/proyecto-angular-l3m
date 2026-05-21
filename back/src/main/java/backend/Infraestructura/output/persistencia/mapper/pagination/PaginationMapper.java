@@ -20,6 +20,7 @@ public class PaginationMapper {
                 page.getNumber(),
                 page.getTotalPages(),
                 pageRequest.sortRequests(),
+                pageRequest.filterRequests(),
                 page.getContent()
         );
     }

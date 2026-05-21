@@ -11,5 +11,6 @@ public record PageRequestDTO (
         @PositiveOrZero
         Integer index,
 
-        List<String> sort
+        List<String> sort,
+        List<String> filter
 ) {}
