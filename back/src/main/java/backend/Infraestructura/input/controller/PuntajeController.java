@@ -5,6 +5,7 @@ import backend.Aplicacion.dto.puntaje.RegistrarPuntajeDTORequest;
 import backend.Aplicacion.usecase.puntaje.Obtener.ObtenerPuntajes;
 import backend.Aplicacion.usecase.puntaje.registrar.RegistrarPuntaje;
 import backend.Dominio.modelo.PuntajeModel;
+import backend.Dominio.puertos.in.puntaje.DesactivarPuntaje;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class PuntajeController {
 
     private final ObtenerPuntajes obtenerPuntajes;
     private final RegistrarPuntaje registrarPuntaje;
+    private final DesactivarPuntaje desactivarPuntaje;
 
 
     @GetMapping("/chart")
@@ -30,5 +32,11 @@ public class PuntajeController {
     public ResponseEntity<PuntajeModel> registrar(@RequestBody RegistrarPuntajeDTORequest request) {
         PuntajeModel puntaje = registrarPuntaje.ejecutar(request);
         return ResponseEntity.ok(puntaje);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> desactivar(@PathVariable Long id) {
+        desactivarPuntaje.desactivar(id);
+        return ResponseEntity.noContent().build();
     }
 }

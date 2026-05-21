@@ -1,23 +1,14 @@
 package backend.Dominio.modelo;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
 public class PuntajeModel {
     private Long id;
-    private double valor;
+    private Double valor;
     private EstudianteModel estudiante;
     private MateriaModel materia;
+    private Boolean activo;
 
-    public PuntajeModel(Integer valor, EstudianteModel estudiante, MateriaModel materia) {
-        this.valor = valor;
-        this.estudiante = estudiante;
-        this.materia = materia;
-    }
-
+    public PuntajeModel() {}
 
     public void validar() {
         if (valor < 0 || valor > 10) {
@@ -25,5 +16,47 @@ public class PuntajeModel {
         }
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public EstudianteModel getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(EstudianteModel estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public MateriaModel getMateria() {
+        return materia;
+    }
+
+    public void setMateria(MateriaModel materia) {
+        this.materia = materia;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public void activar() {
+        activo = true;
+    }
 }

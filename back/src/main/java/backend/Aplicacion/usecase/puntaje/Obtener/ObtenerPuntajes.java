@@ -2,6 +2,7 @@ package backend.Aplicacion.usecase.puntaje.Obtener;
 
 import backend.Aplicacion.dto.puntaje.ObtenerPuntajesDTOResponse;
 import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpaRepository;
+import backend.Infraestructura.output.persistencia.specification.PuntajeActivoSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,9 @@ public class ObtenerPuntajes {
     private final PuntajeJpaRepository puntajeJpaRepository;
 
     public ObtenerPuntajesDTOResponse ejecutar(){
-        var puntajes = puntajeJpaRepository.findAll();
+        var puntajes = puntajeJpaRepository.findAll(
+                PuntajeActivoSpecification.isActive()
+        );
 
         List<String> labels = puntajes.stream()
                 .map(p -> p.getMateria().getNombre())

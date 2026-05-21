@@ -16,6 +16,7 @@ public class RegistrarPuntaje {
         PuntajeModel puntaje = new PuntajeModel();
         puntaje.setValor(req.valor());
 
+        puntaje.activar();
         puntaje.validar();
 
         return puntajeRepositoryPort.guardar(puntaje, req.materiaId(), req.estudianteId());

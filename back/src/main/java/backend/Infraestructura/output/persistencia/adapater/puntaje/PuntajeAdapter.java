@@ -1,6 +1,6 @@
-package backend.Infraestructura.output.persistencia.adapater.puntajeAdapter;
+package backend.Infraestructura.output.persistencia.adapater.puntaje;
 
-import backend.Aplicacion.mapper.puntajeMapper.PuntajeMapper;
+import backend.Infraestructura.output.persistencia.mapper.puntaje.PuntajeMapper;
 import backend.Infraestructura.output.persistencia.specification.PuntajeTieneEstudianteIdSpecification;
 import backend.Dominio.modelo.PuntajeModel;
 import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
@@ -12,11 +12,13 @@ import backend.Infraestructura.output.persistencia.repository.materia.MateriaJpa
 import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 @AllArgsConstructor
+@Transactional
 public class PuntajeAdapter implements PuntajeRepositoryPort {
 
     private final PuntajeJpaRepository puntajeJpaRepository;
@@ -47,5 +49,13 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
                 .stream()
                 .map(PuntajeMapper::toModel)
                 .toList();
+    }
+
+    @Override
+    public void desactivar(Long id) {
+        PuntajeEntity entity = this.puntajeJpaRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Puntaje de id " + id + " no existe"));
+        entity.setActivo(false);
     }
 }
