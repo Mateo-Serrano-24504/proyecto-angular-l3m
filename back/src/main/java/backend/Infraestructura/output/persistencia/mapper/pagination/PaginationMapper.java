@@ -10,14 +10,16 @@ public class PaginationMapper {
     public static Pageable toPageable(PageRequest pageRequest) {
         return org.springframework.data.domain.PageRequest.of(
                 pageRequest.page(),
-                pageRequest.size()
+                pageRequest.size(),
+                SortMapper.toPageableSort(pageRequest.sortRequests())
         );
     }
-    public static <T> PageResponse<T> toPageResponse(Page<T> page) {
+    public static <T> PageResponse<T> toPageResponse(Page<T> page, PageRequest pageRequest) {
         return new PageResponse<>(
                 page.getSize(),
                 page.getNumber(),
                 page.getTotalPages(),
+                pageRequest.sortRequests(),
                 page.getContent()
         );
     }

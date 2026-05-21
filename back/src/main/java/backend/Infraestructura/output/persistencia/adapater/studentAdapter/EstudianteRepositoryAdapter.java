@@ -35,7 +35,8 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
         return PaginationMapper.toPageResponse(
                 this.estudianteJpaRepository
                         .findAll(EstudianteActivoSpecification.isActive(), pageable)
-                        .map(mapper::toModel)
+                        .map(mapper::toModel),
+                request
         );
     }
 

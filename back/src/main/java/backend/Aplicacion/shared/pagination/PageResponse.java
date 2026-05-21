@@ -7,6 +7,7 @@ public record PageResponse<T> (
         Integer size,
         Integer index,
         Integer pageCount,
+        List<SortRequest> sortRequests,
         List<T> items
 ) {
     public <U> PageResponse<U> map(Function<T, U> mapper) {
@@ -14,6 +15,7 @@ public record PageResponse<T> (
                 size,
                 index,
                 pageCount,
+                sortRequests,
                 items.stream()
                         .map(mapper)
                         .toList()
