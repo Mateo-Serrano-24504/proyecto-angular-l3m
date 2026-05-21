@@ -6,7 +6,7 @@ import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
 import backend.Aplicacion.mapper.estudiante.listar.ListarEstudiantesMapper;
 import backend.Aplicacion.shared.pagination.mapper.PaginationDtoMapper;
 import backend.Aplicacion.shared.pagination.PageRequest;
-import backend.Dominio.puertos.in.Student.ListarEstudiantesPort;
+import backend.Dominio.puertos.in.estudiante.ListarEstudiantesPort;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
