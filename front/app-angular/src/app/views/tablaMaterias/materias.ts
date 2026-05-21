@@ -8,7 +8,7 @@ import { Materia, MateriaService } from './service/materiaService';
   selector: 'app-materias',
   imports: [TableModule, FormsModule],
   templateUrl: './materias.html',
-  styleUrl: '../tablaAlumnos/table.css'
+  styleUrl: './materias.css'
 })
 export class Materias implements OnInit {
   materias = signal<Materia[]>([]);

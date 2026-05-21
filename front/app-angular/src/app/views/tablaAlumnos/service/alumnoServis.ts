@@ -42,9 +42,12 @@ export class AlumnoService {
 
       
     getAlumnoPorId(id: number): Observable<Alumno> {
-        return this.http.get<Alumno>(`${this.BASE_URL}/${id}`,)
+        return this.http.get<Alumno>(`${this.BASE_URL}/${id}`);
     }
 
+    eliminarAlumnoLogico(id: number): Observable<Alumno> {
+        return this.http.delete<Alumno>(`${this.BASE_URL}/${id}`);
+    }
     actualizarAlumno(id: number, alumno: Alumno): Observable<Alumno> {
         return this.http.put<Alumno>(`${this.BASE_URL}/${id}`, alumno);
     }

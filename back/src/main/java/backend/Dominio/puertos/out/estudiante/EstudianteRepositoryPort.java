@@ -1,7 +1,7 @@
 package backend.Dominio.puertos.out.estudiante;
 
-import backend.Aplicacion.pagination.PageRequest;
-import backend.Aplicacion.pagination.PageResponse;
+import backend.Aplicacion.shared.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.PageResponse;
 import backend.Dominio.modelo.EstudianteModel;
 
 public interface EstudianteRepositoryPort {
