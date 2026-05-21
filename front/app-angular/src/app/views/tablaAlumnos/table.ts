@@ -4,14 +4,13 @@ import { Router, RouterLink } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
 import { AlumnoService, Alumno } from './service/alumnoServis';
 import { PageNav } from './components/page-nav/page-nav';
-import { PuntajeService } from './service/puntajesService';
 import { FormularioNota } from '../../components/formulario/formulario-nota/formulario-nota';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-
-  imports: [TableModule, Formulario, FormularioNota, PageNav,RouterLink],
+  imports: [TableModule, Formulario, FormularioNota,
+     PageNav, RouterLink],
   templateUrl: './table.html',
   styleUrl: './table.css'
 })
@@ -24,11 +23,11 @@ export class TableComponent implements OnInit {
   constructor(
     private router: Router,
     private service: AlumnoService,
-    private puntajeService: PuntajeService
   ) {}
 
   ngOnInit(): void {
     this.callPage();
+  
   }
 
   callPage() {
@@ -58,12 +57,14 @@ export class TableComponent implements OnInit {
     this.router.navigate([''])
   }
 
+  
   // Estado del modal (equivalente a useState en React)
   mostrarFormulario = signal(false);
   alumnoSeleccionado = signal<Alumno | null>(null);
   mostrarFormularioNota = signal(false);
   alumnoSeleccionadoNota = signal<Alumno | null>(null);
 
+  
 
   abrirFormulario() {
     this.alumnoSeleccionado.set(null);
