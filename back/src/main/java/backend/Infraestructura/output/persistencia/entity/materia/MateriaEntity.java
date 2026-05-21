@@ -19,5 +19,6 @@ public class MateriaEntity {
     @NotNull
     private String nombre;
 
-    private int puntaje;
+    @NotNull
+    private Boolean activo;
 }

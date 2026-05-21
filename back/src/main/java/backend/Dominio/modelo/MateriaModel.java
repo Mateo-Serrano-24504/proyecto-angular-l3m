@@ -1,18 +1,34 @@
 package backend.Dominio.modelo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
 public class MateriaModel {
 
     private Long id;
-    private  String nombre;
+    private String nombre;
+    private Boolean activo;
 
+    public MateriaModel() {}
 
-    public MateriaModel(String nombre){
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void activar() {
+        this.activo = true;
     }
 }
