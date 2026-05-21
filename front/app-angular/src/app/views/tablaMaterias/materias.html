@@ -20,12 +20,31 @@
                 </ng-template>
                 <ng-template #body let-materia>
                     <tr>
-                        <td>{{ materia.nombre }}</td>
+                        <td>
+                            @if (materiaEditandoId() === materia.id) {
+                                <input
+                                    class="input-edicion"
+                                    type="text"
+                                    [(ngModel)]="nombreEditado"
+                                    (keydown.enter)="guardarMateria(materia)"
+                                    (keydown.escape)="cancelarEdicion()"
+                                />
+                            } @else {
+                                {{ materia.nombre }}
+                            }
+                        </td>
                         <td class="celda-editar">
-                            <a class="enlace-perfil" [routerLink]="['/materias/editar', materia.id]">Editar</a>
+                            @if (materiaEditandoId() === materia.id) {
+                                <div class="enlaces-acciones">
+                                    <a class="enlace-perfil" (click)="guardarMateria(materia)">Guardar</a>
+                                    <a class="enlace-perfil" (click)="cancelarEdicion()">Cancelar</a>
+                                </div>
+                            } @else {
+                                <a class="enlace-perfil" (click)="editarMateria(materia)">Editar</a>
+                            }
                         </td>
                         <td class="celda-eliminar">
-                            <a class="enlace-perfil" [routerLink]="['/materias/eliminar', materia.id]">Eliminar</a>
+                            <a class="enlace-perfil" (click)="eliminarMateria(materia)">Eliminar</a>
                         </td>
                     </tr>
                 </ng-template>

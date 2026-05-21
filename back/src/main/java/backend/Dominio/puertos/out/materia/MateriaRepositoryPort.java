@@ -8,4 +8,5 @@ public interface MateriaRepositoryPort {
     MateriaModel guardar(MateriaModel materia);
     void eliminar(Long id);
     List<MateriaModel> listar();
+    MateriaModel buscarPorId(Long id);
 }

@@ -1,6 +1,6 @@
 package backend.Aplicacion.usecase.materia.registrar;
 
-import backend.Aplicacion.dto.materia.RegistrarMateriaDTORequest;
+import backend.Aplicacion.dto.materia.MateriaDTORequest;
 import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.puertos.in.materia.RegistrarMateria;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
@@ -14,7 +14,7 @@ public class RegistrarMateriaUseCase implements RegistrarMateria {
    private final MateriaRepositoryPort materiaRepositoryPortepository;
 
     @Override
-    public Long ejecutar(RegistrarMateriaDTORequest req) {
+    public Long ejecutar(MateriaDTORequest req) {
         MateriaModel materia = new MateriaModel();
         materia.setNombre(req.nombre());
         materia.activar();

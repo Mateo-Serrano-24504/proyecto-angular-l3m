@@ -1,6 +1,6 @@
 package backend.Aplicacion.dto.materia;
 
-public record ListarMateriaDTOResponse(
+public record MateriaDTOResponse(
         Long id,
         String nombre
 ) {

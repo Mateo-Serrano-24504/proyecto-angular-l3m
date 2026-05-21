@@ -161,3 +161,23 @@ button {
   background-color: #7f1d1d !important;
   text-align: center;
 }
+
+.input-edicion {
+  width: 100%;
+  background-color: #020617;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #e2e8f0;
+  padding: 0.45rem 0.6rem;
+  outline: none;
+}
+
+.input-edicion:focus {
+  border-color: #38bdf8;
+}
+
+.enlaces-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}

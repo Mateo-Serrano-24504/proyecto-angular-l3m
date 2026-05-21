@@ -1,7 +1,7 @@
 package backend.Aplicacion.usecase.materia.listar;
 
-import backend.Aplicacion.dto.materia.ListarMateriaDTOResponse;
-import backend.Aplicacion.mapper.materia.ListarMateriasMapper;
+import backend.Aplicacion.dto.materia.MateriaDTOResponse;
+import backend.Aplicacion.mapper.materia.MateriaDtoMapper;
 import backend.Dominio.puertos.in.materia.ListarMateriaPort;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +14,10 @@ import java.util.List;
 public class ListarMateriaUseCase implements ListarMateriaPort {
 
     private final MateriaRepositoryPort repository;
-    private final ListarMateriasMapper mapper;
+    private final MateriaDtoMapper mapper;
 
     @Override
-    public List<ListarMateriaDTOResponse> ejecutar() {
+    public List<MateriaDTOResponse> ejecutar() {
         return this.repository.listar().stream().map(mapper::toDto).toList();
     }
 }

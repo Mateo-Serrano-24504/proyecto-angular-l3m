@@ -44,4 +44,15 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
                 .map(mapper::toModel)
                 .toList();
     }
+
+    @Override
+    public MateriaModel buscarPorId(Long id) {
+        return this.materiaJpaRepository
+                .findById(id)
+                .map(mapper::toModel)
+                .orElseThrow(() -> new RuntimeException("Materia de id " + id + " no existe"))
+                .ifInactiveThrow();
+    }
+
+
 }

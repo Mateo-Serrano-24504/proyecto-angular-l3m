@@ -58,7 +58,6 @@ export class TableComponent implements OnInit {
     this.router.navigate([''])
   }
 
-  // Estado del modal (equivalente a useState en React)
   mostrarFormulario = signal(false);
   alumnoSeleccionado = signal<Alumno | null>(null);
   mostrarFormularioNota = signal(false);
