@@ -151,3 +151,13 @@ button {
   cursor: pointer; 
   opacity: 0.8; 
 }
+
+.celda-editar {
+  background-color: #1e293b !important;
+  text-align: center;
+}
+
+.celda-eliminar {
+  background-color: #7f1d1d !important;
+  text-align: center;
+}
