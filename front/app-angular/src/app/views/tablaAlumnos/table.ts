@@ -63,7 +63,7 @@ export class TableComponent implements OnInit {
   alumnoSeleccionado = signal<Alumno | null>(null);
   mostrarFormularioNota = signal(false);
   alumnoSeleccionadoNota = signal<Alumno | null>(null);
-
+  mostrarModalEliminar = signal(false);
   
 
   abrirFormulario() {
@@ -82,6 +82,32 @@ export class TableComponent implements OnInit {
     this.mostrarFormulario.set(true);
   }
 
+  // Funciones
+  prepararEliminar(alumno: Alumno) {
+    this.alumnoSeleccionado.set(alumno);
+    this.mostrarModalEliminar.set(true);
+  }
+
+  cerrarModalEliminar() {
+    this.mostrarModalEliminar.set(false);
+    this.alumnoSeleccionado.set(null);
+  }
+
+  confirmarEliminacion() {
+    const alumno = this.alumnoSeleccionado();
+    if (alumno) {
+      this.service.eliminarAlumnoLogico(alumno.id!).subscribe({
+        next: () => {
+          this.cerrarModalEliminar();
+          this.callPage(); // Recargamos la tabla para que desaparezca la fila
+        },
+        error: (err) => {
+          console.error('Error al eliminar:', err);
+          // Opcional: manejar el error
+        }
+      });
+    }
+  }
   abrirFormularioNota(alumno: Alumno) {
   this.alumnoSeleccionadoNota.set(alumno);
   this.mostrarFormularioNota.set(true);
