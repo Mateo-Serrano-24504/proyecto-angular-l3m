@@ -17,6 +17,7 @@ public class RegistrarMateriaUseCase implements RegistrarMateria {
     public Long ejecutar(RegistrarMateriaDTORequest req) {
         MateriaModel materia = new MateriaModel();
         materia.setNombre(req.nombre());
+        materia.activar();
 
         MateriaModel materiaGuardada = materiaRepositoryPortepository.guardar(materia);
        return materiaGuardada.getId();
