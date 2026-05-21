@@ -1,15 +1,19 @@
 <div class="card">
 
     <div class="header">
-        <button class="btn-back" (click)="navigateToHome()">
-            <i class="pi pi-arrow-left"></i>
-        </button>
-
-        <h1 class="title">Alumnos</h1>
-
-        <button class="btn-cargar-alumno" (click)="abrirFormulario()">
-            Cargar Alumnos
-        </button>
+        <div class="left">
+            <button class="btn-back" (click)="navigateToHome()">
+                <i class="pi pi-arrow-left"></i>
+            </button>
+        </div>
+        <div class="center">
+            <h1 class="title">Alumnos</h1>
+        </div>
+        <div class="right">
+            <button class="btn-cargar-alumno" (click)="abrirFormulario()">
+                Cargar Alumnos
+            </button>
+        </div>
     </div>
 
     <div id="table">
