@@ -5,9 +5,12 @@ import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
 import backend.Infraestructura.output.persistencia.repository.materia.MateriaJpaRepository;
+import backend.Infraestructura.output.persistencia.specification.MateriaActivaSpecification;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Repository
@@ -32,4 +35,24 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
                 .orElseThrow(() -> new RuntimeException("Materia de id " + id + " no existe"));
         entity.setActivo(false);
     }
+
+    @Override
+    public List<MateriaModel> listar() {
+        return this.materiaJpaRepository
+                .findAll(MateriaActivaSpecification.isActive())
+                .stream()
+                .map(mapper::toModel)
+                .toList();
+    }
+
+    @Override
+    public MateriaModel buscarPorId(Long id) {
+        return this.materiaJpaRepository
+                .findById(id)
+                .map(mapper::toModel)
+                .orElseThrow(() -> new RuntimeException("Materia de id " + id + " no existe"))
+                .ifInactiveThrow();
+    }
+
+
 }

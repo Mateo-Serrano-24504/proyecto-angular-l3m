@@ -1,0 +1,73 @@
+<div class="card">
+
+    <div class="header">
+        <button class="btn-back" (click)="navigateToHome()">
+            <i class="pi pi-arrow-left"></i>
+        </button>
+
+        <h1 class="title">Materias</h1>
+
+        <button class="btn-cargar-alumno" (click)="abrirNuevaMateria()">
+            Agregar Materia
+        </button>
+    </div>
+
+    <div id="table">
+        @if (agregandoMateria()) {
+            <div class="form-inline-materia">
+                <input
+                    class="input-edicion"
+                    type="text"
+                    [(ngModel)]="nombreNuevo"
+                    placeholder="Nombre de la materia"
+                    (keydown.enter)="guardarNuevaMateria()"
+                    (keydown.escape)="cancelarNuevaMateria()"
+                />
+                <a class="enlace-perfil" (click)="guardarNuevaMateria()">Guardar</a>
+                <a class="enlace-perfil" (click)="cancelarNuevaMateria()">Cancelar</a>
+            </div>
+        }
+
+        <div id="p-table-wrapper">
+            <p-table [scrollable]="true" scrollHeight="flex" [value]="materias()" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template #header>
+                    <tr>
+                        <th>Nombre</th>
+                        <th style="text-align: center;">Editar</th>
+                        <th style="text-align: center;">Eliminar</th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-materia>
+                    <tr>
+                        <td>
+                            @if (materiaEditandoId() === materia.id) {
+                                <input
+                                    class="input-edicion"
+                                    type="text"
+                                    [(ngModel)]="nombreEditado"
+                                    (keydown.enter)="guardarMateria(materia)"
+                                    (keydown.escape)="cancelarEdicion()"
+                                />
+                            } @else {
+                                {{ materia.nombre }}
+                            }
+                        </td>
+                        <td class="celda-editar">
+                            @if (materiaEditandoId() === materia.id) {
+                                <div class="enlaces-acciones">
+                                    <a class="enlace-perfil" (click)="guardarMateria(materia)">Guardar</a>
+                                    <a class="enlace-perfil" (click)="cancelarEdicion()">Cancelar</a>
+                                </div>
+                            } @else {
+                                <a class="enlace-perfil" (click)="editarMateria(materia)">Editar</a>
+                            }
+                        </td>
+                        <td class="celda-eliminar">
+                            <a class="enlace-perfil" (click)="eliminarMateria(materia)">Eliminar</a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
