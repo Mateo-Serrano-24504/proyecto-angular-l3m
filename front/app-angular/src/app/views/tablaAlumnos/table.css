@@ -1,3 +1,4 @@
+/* --- CONTENEDOR PRINCIPAL --- */
 .card {
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem;
@@ -25,46 +26,35 @@
     margin: 0;
 }
 
-.btn-editar {
-    background-color: #1e293b;
+/* --- BOTONES DE CABECERA --- */
+.btn-back,
+.btn-cargar-alumno {
+    background: #1e293b;
+    border: none;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
     color: white;
+    cursor: pointer;
     transition: 0.2s;
-}
-
-.btn-editar:hover {
-    background: #334155;
-    transform: scale(1.05);
 }
 
 .btn-back {
     position: absolute;
     left: 0;
-    background: #1e293b;
-    border: none;
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s;
 }
 
 .btn-cargar-alumno {
     position: absolute;
     right: 0;
-    background: #1e293b;
-    border: none;
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s;
 }
 
-.btn-back:hover {
+.btn-back:hover,
+.btn-cargar-alumno:hover {
     background: #334155;
     transform: scale(1.05);
 }
 
+/* --- ESTRUCTURA DE TABLA --- */
 #table {
     display: flex;
     flex-direction: column;
@@ -74,46 +64,75 @@
     min-height: 0;
 }
 
-#p-table-wrapper {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+.contenedor-tabla {
+    overflow: visible;
 }
 
-/* Estilos para la cabecera de la tabla de PrimeNG usando ::ng-deep */
-::ng-deep .p-datatable .p-datatable-thead>tr>th {
-    background-color: #1e293b;
+.tabla-alumnos td, 
+.tabla-alumnos th {
+    vertical-align: middle; /* Reemplaza el align-middle de Bootstrap */
+}
+
+.cabecera-oscura {
+    background-color: #212529;
     color: white;
-    border-color: #334155;
-    padding: 0.5rem;
 }
 
-/* Estilos para las filas/celdas de la tabla de PrimeNG */
-::ng-deep .p-datatable .p-datatable-tbody>tr>td {
-    background-color: #0f172a;
-    color: #e2e8f0;
-    border-color: #334155;
-    padding: 0.5rem;
-
+.columna-acciones {
+    text-align: center;
 }
 
-button {
-    padding: 0.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.288);
-    border-radius: 8px;
+.fila-vacia {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #6c757d;
+}
+
+.enlace-perfil {
+    color: inherit; 
+    text-decoration: none; 
+    transition: all 0.2s ease-in-out; 
+    font-size: 0.95rem;
+}
+
+.enlace-perfil:hover {
+    text-decoration: underline; 
+    cursor: pointer; 
+    opacity: 0.8; 
+}
+
+.btn-desplegable {
     color: white;
-    background-color: grey;
+    border: 1px solid #6c757d;
+    background-color: transparent;
+    transition: 0.2s;
+}
+
+.btn-desplegable:hover,
+.btn-desplegable:focus {
+    color: white;
+    background-color: #6c757d;
+}
+
+.menu-acciones {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.item-accion {
     cursor: pointer;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
 }
 
-/* Estilos para el Modal */
+.item-accion-peligro {
+    cursor: pointer;
+    color: #dc3545;
+}
+
+.item-accion-peligro:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* --- MODALES --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -128,26 +147,84 @@ button {
     z-index: 1000;
 }
 
+/* Diseño específico del cartel de Eliminar */
+.modal-confirmacion {
+    background-color: #2b2f33;
+    border: 1px solid #454d55;
+    max-width: 400px;
+    width: 90%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    text-align: center;
+    color: white;
+}
 
+.icono-advertencia {
+    color: #ffc107;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
 
+.modal-titulo {
+    margin-bottom: 1rem;
+}
+
+.modal-texto {
+    margin-bottom: 0.25rem;
+}
+
+.modal-subtexto {
+    color: #adb5bd;
+    margin-bottom: 1.5rem;
+}
+
+.modal-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-cancelar {
+    padding: 0.375rem 1.5rem;
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    background-color: transparent;
+    border-radius: 0.375rem;
+    transition: 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.btn-confirmar-peligro {
+    padding: 0.375rem 1.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    transition: 0.2s;
+}
+
+.btn-confirmar-peligro:hover {
+    background-color: #bb2d3b;
+}
+
+/* Botón de cerrar para el modal de Notas */
 .btn-cerrar {
     margin-top: 1.5rem;
     background-color: #ef4444;
+    color: white;
     border: none;
     width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
 }
 
 .btn-cerrar:hover {
     background-color: #dc2626;
-}
-.enlace-perfil {
-  color: inherit; 
-  text-decoration: none; 
-  transition: all 0.2s ease-in-out; 
-}
-
-.enlace-perfil:hover {
-  text-decoration: underline; 
-  cursor: pointer; 
-  opacity: 0.8; 
 }
