@@ -13,6 +13,7 @@ import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpa
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository

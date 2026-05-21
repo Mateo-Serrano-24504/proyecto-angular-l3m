@@ -5,6 +5,9 @@ import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -25,4 +28,7 @@ public class PuntajeEntity {
     @ManyToOne
     @JoinColumn(name = "materia_id")
     private MateriaEntity materia;
+
+    @Column(name = "fecha_puntaje", nullable = false)
+    private LocalDateTime fechaPuntaje;
 }

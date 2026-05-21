@@ -5,12 +5,15 @@ import backend.Aplicacion.mapper.paginationMapper.PaginationMapper;
 import backend.Aplicacion.pagination.PageRequest;
 import backend.Aplicacion.pagination.PageResponse;
 import backend.Dominio.modelo.EstudianteModel;
+import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.puertos.out.estudiante.EstudianteRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 import backend.Infraestructura.output.persistencia.repository.estudiante.EstudianteJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @AllArgsConstructor
@@ -42,4 +45,6 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
                 .map(StudentMapper::toModel)
                 .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"));
     }
+
+
 }

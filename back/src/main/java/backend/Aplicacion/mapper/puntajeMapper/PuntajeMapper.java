@@ -18,6 +18,7 @@ public class PuntajeMapper {
         entity.setValor(model.getValor());
         entity.setEstudiante(estudiante);
         entity.setMateria(materia);
+        entity.setFechaPuntaje(model.getFechaPuntaje());
         return entity;
     }
 
@@ -25,6 +26,7 @@ public class PuntajeMapper {
         PuntajeModel model = new PuntajeModel();
         model.setId(entity.getId());
         model.setValor(entity.getValor());
+        model.setFechaPuntaje(entity.getFechaPuntaje());
 
 
         if (entity.getEstudiante() != null) {
@@ -35,6 +37,7 @@ public class PuntajeMapper {
             estudianteModel.setEmail(entity.getEstudiante().getEmail());
             estudianteModel.setDni(entity.getEstudiante().getDni());
             model.setEstudiante(estudianteModel);
+
         }
 
         if (entity.getMateria() != null) {
@@ -51,7 +54,8 @@ public class PuntajeMapper {
         return new ObtenerPuntajesPorEstudianteDniDTOResponse(
                 model.getId(),
                 model.getMateria().getNombre(),
-                model.getValor()
+                model.getValor(),
+                model.getFechaPuntaje()
         );
     }
 }

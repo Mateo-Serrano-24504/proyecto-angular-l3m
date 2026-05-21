@@ -1,38 +1,49 @@
 <div class="card">
 
-  <h2>Cargar Nota</h2>
+  <div class="student-bar">
+    <span> Alumno: {{ alumno()?.nombre }} {{ alumno()?.apellido }}</span>
+  </div>
 
-  <p class="student">
-    {{ alumno()?.nombre }} {{ alumno()?.apellido }}
-  </p>
+  <h2>Cargar Nota</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="grid">
 
       <div class="field">
-        <label>Materia ID</label>
-        <input
-          type="number"
-          min="1"
-          placeholder="Ingrese ID de materia"
-          formControlName="materiaId"
-        >
+        <label>Materia</label>
+
+        <select formControlName="materiaId">
+          <option value="">Seleccione una materia</option>
+
+          @for (materia of materias; track materia.id) {
+            <option [value]="materia.id">
+              {{ materia.nombre }}
+            </option>
+          }
+        </select>
       </div>
 
       <div class="field">
         <label>Nota</label>
+
         <input
           type="number"
-          min="0"
+          min="1"
           max="10"
-          step="0.01"
+          step="1"
           placeholder="Ingrese una nota"
           formControlName="valor"
         >
       </div>
 
     </div>
+
+    @if (materias.length === 0) {
+  <small class="error">
+    Este alumno no tiene materias cargadas.
+  </small>
+}
 
     @if (error) {
       <small class="error">{{ error }}</small>
