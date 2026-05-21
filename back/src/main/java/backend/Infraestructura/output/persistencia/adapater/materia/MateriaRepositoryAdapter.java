@@ -1,4 +1,4 @@
-package backend.Infraestructura.output.persistencia.adapater.materiaAdapter;
+package backend.Infraestructura.output.persistencia.adapater.materia;
 
 import backend.Infraestructura.output.persistencia.mapper.materia.MateriaMapper;
 import backend.Dominio.modelo.MateriaModel;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @AllArgsConstructor
 @Transactional
-public class MateriaRepositryAdapter implements MateriaRepositoryPort {
+public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
 
     private final MateriaJpaRepository materiaJpaRepository;
     private final MateriaMapper mapper;
