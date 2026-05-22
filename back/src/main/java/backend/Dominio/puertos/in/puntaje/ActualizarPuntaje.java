@@ -7,3 +7,4 @@ public interface ActualizarPuntaje {
     PuntajeModel ejecutar(Long id, RegistrarPuntajeDTORequest request);
 
 }
+
