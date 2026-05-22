@@ -1,5 +1,6 @@
 package backend.Infraestructura.output.persistencia.specification.factory;
 
+import backend.Aplicacion.shared.exception.BadRequestException;
 import backend.Aplicacion.shared.pagination.filter.FilterOperation;
 import backend.Aplicacion.shared.pagination.filter.FilterRequest;
 import backend.Infraestructura.output.persistencia.specification.builder.FilterRequestSpecificationBuilder;
@@ -22,7 +23,7 @@ public class FilterRequestSpecificationBuilderFactory<T> {
                 builders.get(operation);
 
         if (builder == null) {
-            throw new RuntimeException(
+            throw new BadRequestException(
                     "Operacion no soportada: " + operation
             );
         }

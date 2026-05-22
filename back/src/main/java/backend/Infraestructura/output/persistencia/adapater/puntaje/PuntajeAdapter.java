@@ -1,5 +1,6 @@
 package backend.Infraestructura.output.persistencia.adapater.puntaje;
 
+import backend.Aplicacion.shared.exception.NotFoundException;
 import backend.Infraestructura.output.persistencia.mapper.puntaje.PuntajeMapper;
 import backend.Infraestructura.output.persistencia.specification.PuntajeTieneEstudianteIdSpecification;
 import backend.Dominio.modelo.PuntajeModel;
@@ -30,10 +31,10 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
     public PuntajeModel guardar(PuntajeModel puntaje, Long materiaId, Long estudianteId) {
 
         EstudianteEntity estudiante = estudianteJpaRepository.findById(estudianteId)
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado"));
+                .orElseThrow(() -> new NotFoundException("Estudiante no encontrado"));
 
         MateriaEntity materia = materiaJpaRepository.findById(materiaId)
-                .orElseThrow(() -> new RuntimeException("Materia no encontrada"));
+                .orElseThrow(() -> new NotFoundException("Materia no encontrada"));
 
         PuntajeEntity entity = mapper.toEntity(puntaje, materia, estudiante);
         PuntajeEntity saved = puntajeJpaRepository.save(entity);
@@ -56,7 +57,7 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
     public void desactivar(Long id) {
         PuntajeEntity entity = this.puntajeJpaRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Puntaje de id " + id + " no existe"));
+                .orElseThrow(() -> new NotFoundException("Puntaje de id " + id + " no existe"));
         entity.setActivo(false);
     }
 }
