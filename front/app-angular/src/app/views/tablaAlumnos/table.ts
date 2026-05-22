@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Router, RouterLink } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
@@ -19,21 +19,29 @@ export class TableComponent implements OnInit {
   pagina = signal<number>(0);
   longitudPagina = signal<number>(10);
   totalPaginas = signal<number>(0);
+  tableContainer = viewChild<ElementRef<HTMLDivElement>>('tableContainer');
 
   constructor(
     private router: Router,
     private service: AlumnoService,
   ) {}
 
+  scrollToTop(): void {
+    this.tableContainer()?.nativeElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+  }
+
   ngOnInit(): void {
     this.callPage();
-  
   }
 
   callPage() {
     this.service.getAlumnos(this.pagina(), this.longitudPagina()).subscribe((res) => {
       this.alumnos.set(res.items);
       this.totalPaginas.set(res.pageCount);
+      this.scrollToTop();
     });
   }
   nextPage() {

@@ -99,8 +99,7 @@
     min-height: 0;
     overflow-x: auto; 
     overflow-y: auto; 
-    display: block; 
-    padding-bottom: 4rem; 
+    display: block;
 }
 
 .tabla-alumnos {
@@ -117,6 +116,12 @@
 .cabecera-oscura {
     background-color: #212529;
     color: white;
+}
+
+.cabecera-oscura th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .columna-acciones {
