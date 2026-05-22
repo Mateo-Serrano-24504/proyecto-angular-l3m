@@ -1,5 +1,6 @@
 package backend.Dominio.modelo;
 
+import backend.Aplicacion.shared.exception.InactiveEntityException;
 
 public class EstudianteModel {
 
@@ -60,7 +61,7 @@ public class EstudianteModel {
 
     public EstudianteModel ifInactiveThrow() {
         if (!active) {
-            throw new RuntimeException("Estudiante inactivo");
+            throw new InactiveEntityException("Estudiante inactivo");
         }
         return this;
     }

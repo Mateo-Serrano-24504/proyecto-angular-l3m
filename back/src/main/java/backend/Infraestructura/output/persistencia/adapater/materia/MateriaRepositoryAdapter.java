@@ -1,5 +1,6 @@
 package backend.Infraestructura.output.persistencia.adapater.materia;
 
+import backend.Aplicacion.shared.exception.NotFoundException;
 import backend.Infraestructura.output.persistencia.mapper.materia.MateriaMapper;
 import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
@@ -32,7 +33,7 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
     @Override
     public void eliminar(Long id) {
         MateriaEntity entity = materiaJpaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Materia de id " + id + " no existe"));
+                .orElseThrow(() -> new NotFoundException("Materia de id " + id + " no existe"));
         entity.setActivo(false);
     }
 
@@ -50,7 +51,7 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
         return this.materiaJpaRepository
                 .findById(id)
                 .map(mapper::toModel)
-                .orElseThrow(() -> new RuntimeException("Materia de id " + id + " no existe"))
+                .orElseThrow(() -> new NotFoundException("Materia de id " + id + " no existe"))
                 .ifInactiveThrow();
     }
 

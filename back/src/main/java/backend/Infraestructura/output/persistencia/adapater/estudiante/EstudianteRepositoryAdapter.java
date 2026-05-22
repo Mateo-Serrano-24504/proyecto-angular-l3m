@@ -1,5 +1,6 @@
 package backend.Infraestructura.output.persistencia.adapater.estudiante;
 
+import backend.Aplicacion.shared.exception.NotFoundException;
 import backend.Infraestructura.output.persistencia.mapper.pagination.PaginationMapper;
 import backend.Aplicacion.shared.pagination.PageRequest;
 import backend.Aplicacion.shared.pagination.PageResponse;
@@ -54,7 +55,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
         return this.estudianteJpaRepository
                 .findById(id)
                 .map(mapper::toModel)
-                .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"))
+                .orElseThrow(() -> new NotFoundException("Estudiante de id " + id + " no existe"))
                 .ifInactiveThrow();
     }
 
@@ -62,7 +63,7 @@ public class EstudianteRepositoryAdapter implements EstudianteRepositoryPort {
     public void desactivar(Long id) {
          EstudianteEntity entity = this.estudianteJpaRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Estudiante de id " + id + " no existe"));
+                .orElseThrow(() -> new NotFoundException("Estudiante de id " + id + " no existe"));
          entity.setActive(false);
     }
 }

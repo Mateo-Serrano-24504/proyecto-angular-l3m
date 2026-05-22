@@ -1,5 +1,7 @@
 package backend.Dominio.modelo;
 
+import backend.Aplicacion.shared.exception.InactiveEntityException;
+
 public class MateriaModel {
 
     private Long id;
@@ -38,7 +40,7 @@ public class MateriaModel {
 
     public MateriaModel ifInactiveThrow() {
         if (!active) {
-            throw new RuntimeException("Materia inactiva");
+            throw new InactiveEntityException("Materia inactiva");
         }
         return this;
     }
