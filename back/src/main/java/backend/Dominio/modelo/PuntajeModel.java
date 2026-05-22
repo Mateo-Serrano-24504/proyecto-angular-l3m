@@ -1,19 +1,29 @@
 package backend.Dominio.modelo;
 
 
+import java.time.LocalDateTime;
+
 public class PuntajeModel {
     private Long id;
     private Double valor;
     private EstudianteModel estudiante;
     private MateriaModel materia;
     private Boolean activo;
-
+    private LocalDateTime fechaPuntaje;
     public PuntajeModel() {}
 
     public void validar() {
         if (valor < 0 || valor > 10) {
             throw new IllegalArgumentException("El puntaje debe estar entre 0 y 10");
         }
+    }
+
+    public LocalDateTime getFechaPuntaje() {
+        return fechaPuntaje;
+    }
+
+    public void setFechaPuntaje(LocalDateTime fechaPuntaje) {
+        this.fechaPuntaje = fechaPuntaje;
     }
 
     public Long getId() {

@@ -7,6 +7,9 @@ import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 @Service
 @RequiredArgsConstructor
 public class RegistrarPuntajeUseCase implements RegistrarPuntaje {
@@ -17,6 +20,7 @@ public class RegistrarPuntajeUseCase implements RegistrarPuntaje {
     public PuntajeModel ejecutar(RegistrarPuntajeDTORequest req) {
         PuntajeModel puntaje = new PuntajeModel();
         puntaje.setValor(req.valor());
+        puntaje.setFechaPuntaje(LocalDateTime.now(ZoneId.of("America/Argentina/Buenos_Aires")));
 
         puntaje.activar();
         puntaje.validar();

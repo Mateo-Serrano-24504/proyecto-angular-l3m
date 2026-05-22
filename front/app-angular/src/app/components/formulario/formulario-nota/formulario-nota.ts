@@ -1,8 +1,8 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Alumno } from '../../../views/tablaAlumnos/service/alumnoServis';
-import { PuntajeService } from '../../../views/tablaAlumnos/service/puntajesService';
+import { Materia, PuntajeService } from '../../../views/tablaAlumnos/service/puntajesService';
 
 @Component({
   selector: 'app-formulario-nota',
@@ -11,12 +11,14 @@ import { PuntajeService } from '../../../views/tablaAlumnos/service/puntajesServ
   templateUrl: './formulario-nota.html',
   styleUrl: './formulario-nota.css',
 })
-export class FormularioNota {
+export class FormularioNota implements OnInit {
   cerrar = output<void>();
 
   alumno = input<Alumno | null>(null);
 
   form: FormGroup;
+
+  materias: Materia[] = [];
 
   error = '';
 
@@ -27,6 +29,22 @@ export class FormularioNota {
     this.form = this.fb.group({
       materiaId: [''],
       valor: [''],
+    });
+  }
+
+  ngOnInit() {
+    this.cargarMaterias();
+  }
+
+  cargarMaterias() {
+    this.puntajeService.obtenerMaterias().subscribe({
+      next: (materias) => {
+        this.materias = materias;
+      },
+      error: (error) => {
+        console.error('Error al cargar materias:', error);
+        this.error = 'No se pudieron cargar las materias.';
+      }
     });
   }
 
@@ -52,8 +70,8 @@ export class FormularioNota {
       return;
     }
 
-    if (!Number.isFinite(valor) || valor < 0 || valor > 10) {
-      this.error = 'La nota debe estar entre 0 y 10.';
+    if (!Number.isInteger(valor) || valor < 1 || valor > 10) {
+      this.error = 'La nota debe ser un número entero entre 1 y 10.';
       return;
     }
 

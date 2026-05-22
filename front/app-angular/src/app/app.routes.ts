@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './views/home/home';
 import { Formulario } from './components/formulario/formulario';
+import { FormularioNota } from './components/formulario/formulario-nota/formulario-nota';
 import { Dashboard } from './views/dashboard/dashboard';
 import { TableComponent } from './views/tablaAlumnos/table';
 import { PerfilAlumno } from './views/perfil-alumno/perfil-alumno';
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'alumnos', component: TableComponent },
   { path: 'materias', component: Materias },
   { path: 'perfil/:id', component: PerfilAlumno },
+   { path: 'formulario-notas/:id', component: FormularioNota },
 ];     

@@ -13,6 +13,11 @@ export interface Puntaje {
   valor: number;
 }
 
+export interface Materia {
+  id: number;
+  nombre: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +28,8 @@ export class PuntajeService {
 
   registrarPuntaje(puntaje: RegistrarPuntaje): Observable<Puntaje> {
     return this.http.post<Puntaje>(this.BASE_URL, puntaje);
+  }
+  obtenerMaterias(): Observable<Materia[]> {
+  return this.http.get<Materia[]>('http://localhost:8080/api/materias');
   }
 }
