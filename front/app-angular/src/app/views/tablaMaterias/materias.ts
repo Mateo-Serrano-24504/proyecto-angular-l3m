@@ -1,12 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
 import { Router } from '@angular/router';
 import { Materia, MateriaService } from './service/materiaService';
 
 @Component({
   selector: 'app-materias',
-  imports: [TableModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './materias.html',
   styleUrl: './materias.css'
 })
