@@ -24,6 +24,7 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
     private final PuntajeJpaRepository puntajeJpaRepository;
     private final EstudianteJpaRepository estudianteJpaRepository;
     private final MateriaJpaRepository materiaJpaRepository;
+    private final PuntajeMapper mapper;
 
     @Override
     public PuntajeModel guardar(PuntajeModel puntaje, Long materiaId, Long estudianteId) {
@@ -34,10 +35,10 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
         MateriaEntity materia = materiaJpaRepository.findById(materiaId)
                 .orElseThrow(() -> new RuntimeException("Materia no encontrada"));
 
-        PuntajeEntity entity = PuntajeMapper.toEntity(puntaje, materia, estudiante);
+        PuntajeEntity entity = mapper.toEntity(puntaje, materia, estudiante);
         PuntajeEntity saved = puntajeJpaRepository.save(entity);
 
-        return PuntajeMapper.toModel(saved);
+        return mapper.toModel(saved);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
                         PuntajeTieneEstudianteIdSpecification.hasEstudianteId(id)
                 )
                 .stream()
-                .map(PuntajeMapper::toModel)
+                .map(mapper::toModel)
                 .toList();
     }
 
