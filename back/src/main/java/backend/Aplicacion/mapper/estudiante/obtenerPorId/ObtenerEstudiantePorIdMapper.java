@@ -21,6 +21,7 @@ public interface ObtenerEstudiantePorIdMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "label", source = "materia.nombre")
     @Mapping(target = "value", source = "valor")
+    @Mapping(target = "fecha", source = "fechaPuntaje")
     ObtenerPuntajesPorEstudianteIdDTOResponse toDto(
             PuntajeModel model
     );
