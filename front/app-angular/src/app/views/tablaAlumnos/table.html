@@ -97,8 +97,14 @@
 @if (mostrarFormularioNota()) {
 <div class="modal-overlay" (click)="cerrarFormularioNota()">
     <div (click)="$event.stopPropagation()">
-        <app-formulario-nota [alumno]="alumnoSeleccionadoNota()" (cerrar)="cerrarFormularioNota()"></app-formulario-nota>
-        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">Cerrar</button>
+    
+        <app-formulario-nota
+    [alumno]="alumnoSeleccionadoNota()"
+    (cerrar)="cerrarFormularioNota()">
+</app-formulario-nota>
+        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">
+            Cerrar
+        </button>
     </div>
 </div>
 }
