@@ -1,5 +1,6 @@
-package backend.Infraestructura.output.persistencia.mapper.puntaje;
+package backend.Aplicacion.mapper.puntaje;
 
+import backend.Aplicacion.dto.puntaje.ObtenerPuntajesPorEstudianteDniDTOResponse;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.modelo.PuntajeModel;
@@ -8,6 +9,7 @@ import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
 import backend.Infraestructura.output.persistencia.entity.puntaje.PuntajeEntity;
 
 public class PuntajeMapper {
+
     public static PuntajeEntity toEntity(PuntajeModel model,
                                          MateriaEntity materia,
                                          EstudianteEntity estudiante) {
@@ -16,7 +18,6 @@ public class PuntajeMapper {
         entity.setValor(model.getValor());
         entity.setEstudiante(estudiante);
         entity.setMateria(materia);
-        entity.setActivo(model.getActivo());
         entity.setFechaPuntaje(model.getFechaPuntaje());
         return entity;
     }
@@ -25,8 +26,8 @@ public class PuntajeMapper {
         PuntajeModel model = new PuntajeModel();
         model.setId(entity.getId());
         model.setValor(entity.getValor());
-        model.setActivo(entity.getActivo());
         model.setFechaPuntaje(entity.getFechaPuntaje());
+
 
         if (entity.getEstudiante() != null) {
             EstudianteModel estudianteModel = new EstudianteModel();
@@ -36,6 +37,7 @@ public class PuntajeMapper {
             estudianteModel.setEmail(entity.getEstudiante().getEmail());
             estudianteModel.setDni(entity.getEstudiante().getDni());
             model.setEstudiante(estudianteModel);
+
         }
 
         if (entity.getMateria() != null) {
@@ -47,6 +49,7 @@ public class PuntajeMapper {
 
         return model;
     }
+
     public static ObtenerPuntajesPorEstudianteDniDTOResponse toDto(PuntajeModel model) {
         return new ObtenerPuntajesPorEstudianteDniDTOResponse(
                 model.getId(),
