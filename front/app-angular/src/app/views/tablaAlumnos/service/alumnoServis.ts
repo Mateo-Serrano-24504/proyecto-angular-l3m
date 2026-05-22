@@ -15,6 +15,7 @@ export interface PuntajeAlumno {
   id: number;
   label: string;
   value: number;
+  fecha: Date;
 }
 export interface PaginaAlumno {
     size: number,

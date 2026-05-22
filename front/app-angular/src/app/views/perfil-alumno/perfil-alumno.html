@@ -26,6 +26,7 @@
             <tr>
               <th class="ps-4">Materia</th>
               <th>Calificación</th>
+              <th>Fecha</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,7 @@
               <tr>
                 <td class="ps-4">{{ nota.label }}</td>
                 <td>{{ nota.value }}</td>
+                <td> {{ nota.fecha | date:'dd/MM/yyyy' }}</td>
               </tr>
             } @empty {
               <tr>

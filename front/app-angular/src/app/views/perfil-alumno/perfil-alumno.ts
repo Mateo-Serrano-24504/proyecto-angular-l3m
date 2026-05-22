@@ -2,11 +2,12 @@ import { Component, signal, OnInit, computed } from '@angular/core';
 import { AlumnoService, Alumno } from '../tablaAlumnos/service/alumnoServis';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-perfil-alumno',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './perfil-alumno.html',
   styleUrl: './perfil-alumno.css',
 })
