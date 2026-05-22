@@ -1,14 +1,16 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
 import { AlumnoService, Alumno } from './service/alumnoServis';
+import { PageNav } from './components/page-nav/page-nav';
+import { FormularioNota } from '../../components/formulario/formulario-nota/formulario-nota';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  // Agregar los imports de este componente
-  imports: [TableModule, Formulario],
+  imports: [TableModule, Formulario, FormularioNota,
+     PageNav, RouterLink],
   templateUrl: './table.html',
   styleUrl: './table.css'
 })
@@ -17,11 +19,19 @@ export class TableComponent implements OnInit {
   pagina = signal<number>(0);
   longitudPagina = signal<number>(10);
   totalPaginas = signal<number>(0);
+  tableContainer = viewChild<ElementRef<HTMLDivElement>>('tableContainer');
 
   constructor(
     private router: Router,
-    private service: AlumnoService
+    private service: AlumnoService,
   ) {}
+
+  scrollToTop(): void {
+    this.tableContainer()?.nativeElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+  }
 
   ngOnInit(): void {
     this.callPage();
@@ -31,6 +41,7 @@ export class TableComponent implements OnInit {
     this.service.getAlumnos(this.pagina(), this.longitudPagina()).subscribe((res) => {
       this.alumnos.set(res.items);
       this.totalPaginas.set(res.pageCount);
+      this.scrollToTop();
     });
   }
   nextPage() {
@@ -54,10 +65,14 @@ export class TableComponent implements OnInit {
     this.router.navigate([''])
   }
 
+  
   // Estado del modal (equivalente a useState en React)
   mostrarFormulario = signal(false);
   alumnoSeleccionado = signal<Alumno | null>(null);
-
+  mostrarFormularioNota = signal(false);
+  alumnoSeleccionadoNota = signal<Alumno | null>(null);
+  mostrarModalEliminar = signal(false);
+  
 
   abrirFormulario() {
     this.alumnoSeleccionado.set(null);
@@ -73,5 +88,44 @@ export class TableComponent implements OnInit {
   editarAlumno(alumno: Alumno) {
     this.alumnoSeleccionado.set(alumno);
     this.mostrarFormulario.set(true);
+  }
+
+  prepararEliminar(alumno: Alumno) {
+    this.alumnoSeleccionado.set(alumno);
+    this.mostrarModalEliminar.set(true);
+  }
+
+  cerrarModalEliminar() {
+    this.mostrarModalEliminar.set(false);
+    this.alumnoSeleccionado.set(null);
+  }
+
+  confirmarEliminacion() {
+    const alumno = this.alumnoSeleccionado();
+    if (alumno) {
+      this.service.eliminarAlumnoLogico(alumno.id!).subscribe({
+        next: () => {
+          this.cerrarModalEliminar();
+          this.callPage(); 
+        },
+        error: (err) => {
+          console.error('Error al eliminar:', err);
+        }
+      });
+    }
+  }
+  abrirFormularioNota(alumno: Alumno) {
+  this.alumnoSeleccionadoNota.set(alumno);
+  this.mostrarFormularioNota.set(true);
+  }
+
+  cerrarFormularioNota() {
+    this.mostrarFormularioNota.set(false);
+    this.alumnoSeleccionadoNota.set(null);
+  }
+
+  cargarNota(alumno: Alumno) {
+    this.alumnoSeleccionadoNota.set(alumno);
+    this.mostrarFormularioNota.set(true);
   }
 }

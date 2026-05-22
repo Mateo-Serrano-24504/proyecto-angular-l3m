@@ -1,72 +1,113 @@
 .container-main {
   min-height: 100vh;
-  padding: 2rem;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 4rem 2rem;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.88), rgba(17, 24, 39, 0.92)),
+    url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1600&q=80');
+  background-position: center;
+  background-size: cover;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
-/* TITULO */
-.title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* CARDS */
-.card-header,
-.card-message,
-.card-action,
-.card-buttons {
+.campus-header {
   width: 100%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  max-width: 760px;
   text-align: center;
 }
 
-/* BOTÓN PRINCIPAL */
-.btn-primary {
-  background: #22c55e;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
+.eyebrow {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
 }
 
-.btn-primary:hover {
-  background: #16a34a;
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  color: #e5e7eb;
+  font-size: 1.05rem;
+  margin: 1rem 0 0;
+}
+
+.campus-panel {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.campus-action {
+  min-height: 120px;
+  background: rgba(31, 41, 55, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.action-icon {
+  width: 48px;
+  height: 48px;
+  background: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+}
+
+.campus-action strong {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.campus-action small {
+  color: #cbd5e1;
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.campus-action:hover {
+  background: #374151;
+  border-color: #e5e7eb;
   transform: translateY(-2px);
 }
 
-/* BOTONES SECUNDARIOS */
-.card-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+@media (max-width: 640px) {
+  .container-main {
+    padding: 2rem 1rem;
+  }
 
-.btn-secondary {
-  background: #1e293b;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  .title {
+    font-size: 2.2rem;
+  }
 
-.btn-secondary:hover {
-  background: #334155;
-  transform: scale(1.05);
+  .campus-panel {
+    grid-template-columns: 1fr;
+  }
 }

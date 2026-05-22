@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8db7aaa1-5018-4c95-afc5-a8938d42e16f" name="Changes" comment="Cambios merge">
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/mapper/puntaje/PuntajeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/backend/Dominio/puertos/in/puntaje/ActualizarPuntaje.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/backend/Dominio/puertos/in/puntaje/ListarPuntajesPorId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/dto/puntaje/ObtenerPuntajesPorEstudianteDniDTOResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/dto/puntaje/ObtenerPuntajesPorEstudianteDniDTOResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/dto/puntaje/RegistrarPuntajeDTORequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/dto/puntaje/RegistrarPuntajeDTORequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/usecase/puntaje/registrar/RegistrarPuntajeUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Aplicacion/usecase/puntaje/registrar/RegistrarPuntajeUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Dominio/modelo/PuntajeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Dominio/modelo/PuntajeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/entity/puntaje/PuntajeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/entity/puntaje/PuntajeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/mapper/puntaje/PuntajeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/mapper/puntaje/PuntajeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/specification/PuntajeTieneEstudianteIdSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/backend/Infraestructura/output/persistencia/specification/PuntajeTieneEstudianteIdSpecification.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3E354BNP6oEGGBM3lYYiMZuRi0Z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "cargarNotasLau",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lefernandez/Desktop/ProyectosDePrueba/proyecto-angular-l3m",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\lefernandez\\Desktop\\ProyectosDePrueba\\proyecto-angular-l3m\\front\\app-angular\\node_modules\\typescript\\lib"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8db7aaa1-5018-4c95-afc5-a8938d42e16f" name="Changes" comment="" />
+      <created>1779394219132</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779394219132</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Cambios merge">
+      <option name="closed" value="true" />
+      <created>1779396982513</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779396982513</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Se hizo el cargar notas y mostrar materias en el formulario-notas" />
+    <MESSAGE value="Cambios merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios merge" />
+  </component>
+</project>

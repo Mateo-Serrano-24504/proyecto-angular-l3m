@@ -1,55 +1,110 @@
 <div class="card">
-
     <div class="header">
-        <button class="btn-back" (click)="navigateToHome()">
-            <i class="pi pi-arrow-left"></i>
-        </button>
-
-        <h1 class="title">Alumnos</h1>
-
-        <button class="btn-cargar-alumno" (click)="abrirFormulario()">
-            Cargar Alumnos
-        </button>
+        <div class="left">
+            <button class="btn-back" (click)="navigateToHome()">
+                <i class="pi pi-arrow-left"></i>
+            </button>
+        </div>
+        <div class="center">
+            <h1 class="title">Alumnos</h1>
+        </div>
+        <div class="right">
+            <button class="btn-cargar-alumno" (click)="abrirFormulario()">
+                Cargar Alumnos
+            </button>
+        </div>
     </div>
 
     <div id="table">
-        <div id="p-table-wrapper">
-            <p-table [scrollable]="true" scrollHeight="flex" [value]="alumnos()" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template #header>
+        <div #tableContainer class="contenedor-tabla">
+            <table class="table table-striped table-hover tabla-alumnos">
+                <thead class="cabecera-oscura">
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <th>Nombre completo</th>
                         <th>DNI</th>
                         <th>Email</th>
-                        <th style="text-align: center;">Notas</th>
-                        <th style="text-align: center;">Acciones</th>
+                        <th class="columna-acciones">Acciones</th>
                     </tr>
-                </ng-template>
-                <ng-template #body let-alumno>
+                </thead>
+
+                <tbody>
+                    @for (alumno of alumnos(); track alumno.dni) {
                     <tr>
-                        <td>{{ alumno.nombre }}</td>
-                        <td>{{ alumno.apellido }}</td>
+                        <td>
+                            <a [routerLink]="['/perfil/', alumno.id]" class="enlace-perfil ">
+                                {{ alumno.nombre }} {{ alumno.apellido }}
+                            </a>
+                        </td>
                         <td>{{ alumno.dni }}</td>
                         <td>{{ alumno.email }}</td>
-                        <td>
-                            <button class="button">
-                                cargar notas
-                            </button>
+
+                        <td class="columna-acciones">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-desplegable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="pi pi-cog"></i>
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-menu-end menu-acciones">
+                                    <li><a class="dropdown-item item-accion" (click)="abrirFormularioNota(alumno)">Cargar Notas</a></li>
+                                    <li><a class="dropdown-item item-accion" (click)="editarAlumno(alumno)">Editar</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item item-accion-peligro" (click)="prepararEliminar(alumno)">Eliminar</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
-                </ng-template>
-            </p-table>
+                    } @empty {
+                    <tr>
+                        <td colspan="4" class="fila-vacia">
+                            No hay alumnos cargados.
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
+    
+    <app-page-nav (nextPage)="nextPage()" (previousPage)="previousPage()" (goToPage)="goToPage($event)"
+        [pageCount]="totalPaginas()" [currentPage]="pagina() + 1"></app-page-nav>
 </div>
 
 @if (mostrarFormulario()) {
 <div class="modal-overlay" (click)="cerrarFormulario()">
     <div (click)="$event.stopPropagation()">
-        <app-formulario
-            [alumno]="alumnoSeleccionado()"
-            (cerrar)="cerrarFormulario()">
-        </app-formulario>
+        <app-formulario [alumno]="alumnoSeleccionado()" (cerrar)="cerrarFormulario()"></app-formulario>
+    </div>
+</div>
+}
+
+@if (mostrarModalEliminar()) {
+<div class="modal-overlay" (click)="cerrarModalEliminar()">
+    <div class="modal-confirmacion" (click)="$event.stopPropagation()">
+        <i class="pi pi-exclamation-triangle icono-advertencia"></i>
+        <h3 class="modal-titulo">Confirmar Eliminación</h3>
+
+        <p class="modal-texto">¿Estás seguro que deseás eliminar a <strong>{{ alumnoSeleccionado()?.nombre }} {{ alumnoSeleccionado()?.apellido }}</strong>?</p>
+        <p class="modal-subtexto">DNI: {{ alumnoSeleccionado()?.dni }}</p>
+
+        <div class="modal-botones">
+            <button class="btn btn-cancelar" (click)="cerrarModalEliminar()">Cancelar</button>
+            <button class="btn btn-confirmar-peligro" (click)="confirmarEliminacion()">Eliminar</button>
+        </div>
+    </div>
+</div>
+}
+
+@if (mostrarFormularioNota()) {
+<div class="modal-overlay" (click)="cerrarFormularioNota()">
+    <div (click)="$event.stopPropagation()">
+    
+        <app-formulario-nota
+    [alumno]="alumnoSeleccionadoNota()"
+    (cerrar)="cerrarFormularioNota()">
+</app-formulario-nota>
+        <button class="btn-cerrar" type="button" (click)="cerrarFormularioNota()">
+            Cerrar
+        </button>
     </div>
 </div>
 }
