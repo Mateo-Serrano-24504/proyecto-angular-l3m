@@ -1,5 +1,6 @@
 package backend.Infraestructura.output.persistencia.mapper.puntaje;
 
+import backend.Aplicacion.dto.puntaje.ObtenerPuntajesPorEstudianteDniDTOResponse;
 import backend.Dominio.modelo.EstudianteModel;
 import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.modelo.PuntajeModel;
