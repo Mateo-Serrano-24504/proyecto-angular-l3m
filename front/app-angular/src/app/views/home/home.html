@@ -1,29 +1,29 @@
 <div class="container-main">
-
-
-  <div class="card-header">
-    <h1 class="title">Aplicación de Prueba</h1>
+  <div class="campus-header">
+    <p class="eyebrow">Campus institucional</p>
+    <h1 class="title">Sistema de Gestion Academica</h1>
+    <p class="subtitle">Gestion de estudiantes, materias y calificaciones</p>
   </div>
 
-  <div class="card-message">
-    <p>{{ mensaje() }}</p>
-  </div>
+  <div class="campus-panel">
+    <button class="campus-action" routerLink="/alumnos">
+      <span class="action-icon">
+        <i class="pi pi-users"></i>
+      </span>
+      <span>
+        <strong>Alumnos</strong>
+        <small>Consultar y administrar estudiantes</small>
+      </span>
+    </button>
 
- 
-  <div class="card-action">
-    <button (click)="toggleLoggin()" class="btn-primary">
-      {{ logged() ? 'Salir' : 'Entrar' }}
+    <button class="campus-action" routerLink="/materias">
+      <span class="action-icon">
+        <i class="pi pi-book"></i>
+      </span>
+      <span>
+        <strong>Materias</strong>
+        <small>Gestionar materias y sus calificaciones</small>
+      </span>
     </button>
   </div>
-
-  <div class="card-buttons">
-    <button class="btn-secondary" (click)="abrirModal()">Modal</button>
-    <button class="btn-secondary" routerLink="/alumnos">Alumnos</button>
-    <button class="btn-secondary" routerLink="/materias">Materias</button>
-    <button class="btn-secondary" (click)="navigateTo()">Dashboard</button>
-  </div>
-
-  <app-padre #modalPadre></app-padre>
-  
-
 </div>
