@@ -14,5 +14,6 @@ export const routes: Routes = [
   { path: 'alumnos', component: TableComponent },
   { path: 'materias', component: Materias },
   { path: 'perfil/:id', component: PerfilAlumno },
-   { path: 'formulario-notas/:id', component: FormularioNota },
+  { path: 'formulario-notas/:id', component: FormularioNota },
+  { path: '**', redirectTo: '' },
 ];     
