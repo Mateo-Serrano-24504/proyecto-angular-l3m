@@ -1,6 +1,7 @@
 package backend.Aplicacion.dto.estudiante.registrar;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public record RegistrarEstudianteDTORequest(
         @NotNull(message = "Nombre es requerido")

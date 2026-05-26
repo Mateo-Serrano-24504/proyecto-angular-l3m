@@ -39,7 +39,12 @@ public class MateriaController {
 
     @GetMapping
     public PageResponseDTO<MateriaDTOResponse> listar(PageRequestDTO dto) {
-        return this.listarMateriasPort.ejecutar(dto);
+        return this.listarMateriasPort.listarPagina(dto);
+    }
+
+    @GetMapping("/todos")
+    public List<MateriaDTOResponse> listarTdos() {
+        return this.listarMateriasPort.listarTodos();
     }
 
     @PutMapping("/{id}")

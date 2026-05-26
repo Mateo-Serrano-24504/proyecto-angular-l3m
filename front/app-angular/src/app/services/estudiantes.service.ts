@@ -25,10 +25,12 @@ export class EstudiantesService{
 
     constructor(private http: HttpClient){}
 
-    getChart():Observable<ChartResponse> {
-        return this.http.get<ChartResponse>(`${this.apiUrl}/puntajes/chart`)
+    getChart(id: Number | null):Observable<ChartResponse> {
+      const idField = id == null ? "" : `/${id}`;
+      return this.http.get<ChartResponse>(`${this.apiUrl}/puntajes/chart` + idField)
     }
 
     getEstudiantePorId(id: number): Observable<Alumno> {
-    return this.http.get<Alumno>(`${this.apiUrl}/students/${id}`);}
+      return this.http.get<Alumno>(`${this.apiUrl}/students/${id}`);
+    }
 }

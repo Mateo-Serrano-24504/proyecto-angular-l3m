@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'formulario', component: Formulario },
   { path: 'dashboard', component: Dashboard },
+  { path: 'dashboard/:id', component: Dashboard },
   { path: 'alumnos', component: TableComponent },
   { path: 'materias', component: Materias },
   { path: 'perfil/:id', component: PerfilAlumno },

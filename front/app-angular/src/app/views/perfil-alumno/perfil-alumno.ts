@@ -23,15 +23,13 @@ export class PerfilAlumno implements OnInit{
   ){}
 
   ngOnInit(): void {
-
     const idString = this.route.snapshot.paramMap.get('id');
-
     if (idString) {
       const idNumerico = Number(idString);
       this.inicializarPerfil(idNumerico); 
     }
-   
   }
+
   puntajesAgrupados = computed(() => {
     const datos = this.alumno();
     
@@ -39,9 +37,15 @@ export class PerfilAlumno implements OnInit{
 
     return [...datos.puntajes].sort((a, b) => a.label.localeCompare(b.label));
   });
-  navigateToTableAlumnos(){
+
+  navigateToTableAlumnos() {
     this.router.navigate(['alumnos'])
   }
+
+  navigateToChart() {
+    this.router.navigate(['dashboard', this.alumno()?.id]);
+  }
+
   inicializarPerfil(id: number){
     this.service.getAlumnoPorId(id).subscribe({
       next: (res) => {

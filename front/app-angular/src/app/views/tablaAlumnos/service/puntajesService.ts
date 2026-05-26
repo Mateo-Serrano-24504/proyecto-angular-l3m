@@ -30,6 +30,6 @@ export class PuntajeService {
     return this.http.post<Puntaje>(this.BASE_URL, puntaje);
   }
   obtenerMaterias(): Observable<Materia[]> {
-  return this.http.get<Materia[]>('http://localhost:8080/api/materias');
+  return this.http.get<Materia[]>('http://localhost:8080/api/materias/todos');
   }
 }

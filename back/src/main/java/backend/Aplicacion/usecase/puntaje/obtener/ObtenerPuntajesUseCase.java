@@ -2,8 +2,7 @@ package backend.Aplicacion.usecase.puntaje.obtener;
 
 import backend.Aplicacion.dto.puntaje.ObtenerPuntajesDTOResponse;
 import backend.Dominio.puertos.in.puntaje.ObtenerPuntajes;
-import backend.Infraestructura.output.persistencia.projection.PromedioPuntaje;
-import backend.Infraestructura.output.persistencia.repository.puntaje.PuntajeJpaRepository;
+import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +10,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ObtenerPuntajesUseCase implements ObtenerPuntajes {
 
-    private final PuntajeJpaRepository puntajeJpaRepository;
+    private final PuntajeRepositoryPort repositoryPort;
 
     @Override
-    public ObtenerPuntajesDTOResponse ejecutar(){
-        var promedios = puntajeJpaRepository.obtenerPromedios();
-        return new ObtenerPuntajesDTOResponse(
-                promedios.stream()
-                        .map(PromedioPuntaje::getLabel)
-                        .toList(),
-
-                promedios.stream()
-                        .map(p -> p.getPromedio().intValue())
-                        .toList()
-        );
+    public ObtenerPuntajesDTOResponse ejecutar() {
+        return repositoryPort.obtener();
     }
 }

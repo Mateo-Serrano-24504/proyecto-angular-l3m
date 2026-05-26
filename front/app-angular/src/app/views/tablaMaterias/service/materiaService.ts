@@ -31,6 +31,10 @@ export class MateriaService {
     return this.http.get<PaginaMaterias>(`${this.BASE_URL}?index=${page}&size=${size}`);
   }
 
+  getAllMaterias(): Observable<Materia>{
+    return this.http.get<Materia>(`${this.BASE_URL}/todos`);
+  }
+
   crearMateria(materia: MateriaRequest): Observable<number> {
     return this.http.post<number>(this.BASE_URL, materia);
   }

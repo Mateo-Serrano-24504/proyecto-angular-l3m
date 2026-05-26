@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Materia, MateriaService } from './service/materiaService';
-import { PageNav } from './components/page-nav/page-nav';
+import { PageNav } from '../../components/page-nav/page-nav';
 
 @Component({
   selector: 'app-materias',

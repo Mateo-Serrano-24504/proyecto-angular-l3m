@@ -7,5 +7,6 @@ import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
 import java.util.List;
 
 public interface ListarMateriaPort {
-    PageResponseDTO<MateriaDTOResponse> ejecutar(PageRequestDTO dto);
+    PageResponseDTO<MateriaDTOResponse> listarPagina(PageRequestDTO dto);
+    List<MateriaDTOResponse> listarTodos();
 }

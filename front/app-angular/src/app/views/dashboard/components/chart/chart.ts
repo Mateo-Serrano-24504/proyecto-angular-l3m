@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, PLATFORM_ID, inject, signal } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, input, signal } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { EstudiantesService } from '../../../../services/estudiantes.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -11,6 +11,7 @@ import { ChangeDetectorRef } from '@angular/core';
   imports: [ChartModule],
 })
 export class ChartRadar implements OnInit {
+  id = input<number | null>(null);
   data = signal<any>({});
   options: any;
   platformId = inject(PLATFORM_ID);
@@ -56,15 +57,15 @@ export class ChartRadar implements OnInit {
 
   initChart() {
     if (isPlatformBrowser(this.platformId)) {
-      this.studentService.getChart().subscribe((res) => {
+      this.studentService.getChart(this.id()).subscribe((res) => {
         this.data.set(
           {
             labels: res.labels,
             datasets: [
               {
                 label: 'Rendimiento',
-                borderColor: '#22c55e',
-                backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                borderColor: '#06b6d4',
+                backgroundColor: 'rgba(6,182,212,0.2)',
                 data: res.data,
               },
             ],

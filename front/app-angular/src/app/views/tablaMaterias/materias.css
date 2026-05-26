@@ -52,21 +52,23 @@
 }
 
 /* --- BOTONES DE CABECERA --- */
+button {
+    background: #1e293b;
+}
+
+button:hover {
+    background: #334155;
+    transform: scale(1.05);
+}
+
 .btn-back,
 .btn-cargar-alumno {
-    background: #1e293b;
     border: none;
     padding: 0.6rem 0.8rem;
     border-radius: 10px;
     color: white;
     cursor: pointer;
     transition: 0.2s;
-}
-
-.btn-back:hover,
-.btn-cargar-alumno:hover {
-    background: #334155;
-    transform: scale(1.05);
 }
 
 /* --- ESTRUCTURA DE TABLA --- */
