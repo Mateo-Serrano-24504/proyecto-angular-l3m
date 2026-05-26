@@ -82,4 +82,6 @@
             </table>
         </div>
     </div>
+    <app-page-nav (nextPage)="nextPage()" (previousPage)="previousPage()" (goToPage)="goToPage($event)"
+        [pageCount]="totalPaginas()" [currentPage]="pagina() + 1"></app-page-nav>
 </div>

@@ -27,6 +27,6 @@ public class ListarMateriaUseCase implements ListarMateriaPort {
                 this.repository
                         .listar(request)
                         .map(mapper::toDto)
-        );;
+        );
     }
 }

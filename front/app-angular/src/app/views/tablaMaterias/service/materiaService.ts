@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 export interface Materia {
   id: number;
   nombre: string;
@@ -9,6 +10,13 @@ export interface Materia {
 
 export interface MateriaRequest {
   nombre: string;
+}
+
+export interface PaginaMaterias {
+    size: number,
+    index: number,
+    pageCount: number,
+    items: Materia[]
 }
 
 @Injectable({
@@ -19,8 +27,8 @@ export class MateriaService {
 
   constructor(private http: HttpClient) {}
 
-  getMaterias(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(this.BASE_URL);
+  getMaterias(page : number, size: number): Observable<PaginaMaterias> {
+    return this.http.get<PaginaMaterias>(`${this.BASE_URL}?index=${page}&size=${size}`);
   }
 
   crearMateria(materia: MateriaRequest): Observable<number> {

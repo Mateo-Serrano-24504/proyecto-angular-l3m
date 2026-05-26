@@ -29,8 +29,6 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
 
     private final MateriaJpaRepository materiaJpaRepository;
     private final MateriaMapper mapper;
-    private final FilterRequestSpecificationBuilderFactory<MateriaEntity> factory;
-
 
     @Override
     public MateriaModel guardar(MateriaModel materia) {
@@ -51,8 +49,7 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
     public PageResponse<MateriaModel> listar(PageRequest request) {
         Pageable pageable = PaginationMapper.toPageable(request);
         Specification<MateriaEntity> specification = MateriaActivaSpecification
-                .isActive()
-                .and(this.factory.build(request.filterRequests()));
+                .isActive();
         return PaginationMapper.toPageResponse(
                 this.materiaJpaRepository
                         .findAll(
