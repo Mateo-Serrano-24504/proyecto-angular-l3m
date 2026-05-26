@@ -26,6 +26,14 @@ export class Dashboard implements OnInit {
     });
   }
 
+  navigateBack() {
+    if (this.alumnoId() == null) {
+      this.router.navigate([''])
+      return
+    }
+    this.router.navigate(['perfil', `${this.alumnoId()}`])
+  }
+
   navigateToHome() {
     this.router.navigate([''])
   }

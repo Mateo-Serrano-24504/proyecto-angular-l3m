@@ -70,6 +70,20 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
     }
 
     @Override
+    public ObtenerPuntajesDTOResponse obtener(Long id) {
+        var promedios = puntajeJpaRepository.obtenerPromedios(id);
+        return new ObtenerPuntajesDTOResponse(
+                promedios.stream()
+                        .map(PromedioPuntaje::getLabel)
+                        .toList(),
+
+                promedios.stream()
+                        .map(p -> p.getPromedio().intValue())
+                        .toList()
+        );
+    }
+
+    @Override
     public void desactivar(Long id) {
         PuntajeEntity entity = this.puntajeJpaRepository
                 .findById(id)

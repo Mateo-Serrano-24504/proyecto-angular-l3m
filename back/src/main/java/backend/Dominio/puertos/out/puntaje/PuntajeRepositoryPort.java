@@ -9,5 +9,6 @@ public interface PuntajeRepositoryPort {
     PuntajeModel guardar(PuntajeModel puntaje,Long materiaId, Long estudianteId);
     List<PuntajeModel> buscarPorIdDeAlumno(Long id);
     ObtenerPuntajesDTOResponse obtener();
+    ObtenerPuntajesDTOResponse obtener(Long id);
     void desactivar(Long id);
 }

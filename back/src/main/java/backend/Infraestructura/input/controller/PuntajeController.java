@@ -28,6 +28,12 @@ public class PuntajeController {
         return ResponseEntity.ok(chart);
     }
 
+    @GetMapping("/chart/{id}")
+    public ResponseEntity<ObtenerPuntajesDTOResponse> obtenerChartDeAlumno(@PathVariable Long id) {
+        ObtenerPuntajesDTOResponse chart = obtenerPuntajes.ejecutarParaAlumno(id);
+        return ResponseEntity.ok(chart);
+    }
+
     @PostMapping
     public ResponseEntity<PuntajeModel> registrar(@RequestBody RegistrarPuntajeDTORequest request) {
         PuntajeModel puntaje = registrarPuntaje.ejecutar(request);

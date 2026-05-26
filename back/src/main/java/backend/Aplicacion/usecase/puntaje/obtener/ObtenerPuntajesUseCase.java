@@ -16,4 +16,9 @@ public class ObtenerPuntajesUseCase implements ObtenerPuntajes {
     public ObtenerPuntajesDTOResponse ejecutar() {
         return repositoryPort.obtener();
     }
+
+    @Override
+    public ObtenerPuntajesDTOResponse ejecutarParaAlumno(Long id) {
+        return repositoryPort.obtener(id);
+    }
 }
