@@ -1,20 +1,26 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Materia, MateriaService } from './service/materiaService';
+import { PageNav } from './components/page-nav/page-nav';
 
 @Component({
   selector: 'app-materias',
-  imports: [FormsModule],
+  imports: [FormsModule, PageNav],
   templateUrl: './materias.html',
   styleUrl: './materias.css'
 })
 export class Materias implements OnInit {
   materias = signal<Materia[]>([]);
+  pagina = signal<number>(0);
+  longitudPagina = signal<number>(10);
+  totalPaginas = signal<number>(0);
   materiaEditandoId = signal<number | null>(null);
   agregandoMateria = signal(false);
   nombreEditado = '';
   nombreNuevo = '';
+  tableContainer = viewChild<ElementRef<HTMLDivElement>>('tableContainer');
+
 
   constructor(
     private router: Router,
@@ -22,14 +28,43 @@ export class Materias implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarMaterias();
+    this.callPage();
   }
 
-  cargarMaterias() {
-    this.materiaService.getMaterias().subscribe((materias) => {
-      this.materias.set(materias);
+  scrollToTop(): void {
+    this.tableContainer()?.nativeElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
   }
+
+  callPage() {
+    this.materiaService.getMaterias(this.pagina(), this.longitudPagina()).subscribe((res) => {
+      this.materias.set(res.items);
+      this.totalPaginas.set(res.pageCount);
+      this.scrollToTop();
+    });
+  }
+
+  nextPage() {
+    if (this.pagina() + 1 < this.totalPaginas()) {
+      this.pagina.set(this.pagina() + 1);
+      this.callPage();
+    }
+  }
+
+  previousPage() {
+    if (this.pagina() > 0) {
+      this.pagina.set(this.pagina() - 1);
+      this.callPage();
+    }
+  }
+
+  goToPage(page: number) {
+    this.pagina.set(page);
+    this.callPage();
+  }
+
 
   navigateToHome() {
     this.router.navigate(['']);
@@ -55,7 +90,7 @@ export class Materias implements OnInit {
 
     this.materiaService.actualizarMateria(materia.id, { ...materia, nombre }).subscribe(() => {
       this.cancelarEdicion();
-      this.cargarMaterias();
+      this.callPage();
     });
   }
 
@@ -79,13 +114,13 @@ export class Materias implements OnInit {
 
     this.materiaService.crearMateria({ nombre }).subscribe(() => {
       this.cancelarNuevaMateria();
-      this.cargarMaterias();
+      this.callPage();
     });
   }
 
   eliminarMateria(materia: Materia) {
     this.materiaService.eliminarMateria(materia.id).subscribe(() => {
-      this.cargarMaterias();
+      this.callPage();
     });
   }
 }
