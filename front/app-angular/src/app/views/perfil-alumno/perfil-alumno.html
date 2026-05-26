@@ -7,6 +7,9 @@
           <i class="pi pi-arrow-left"></i>
         </button>
         <h2 class="title mb-0">Perfil del Alumno</h2>
+        <button class="metricas-btn btn btn-outline-light btn-sm" (click)="navigateToChart()">
+          Métricas
+        </button>
       </div>
       <ul class="list-group list-group-flush row flex-row flex-wrap m-0">
         <li class="list-group-item col-6"><strong>Nombre:</strong> {{ alumno()?.nombre }}</li>

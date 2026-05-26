@@ -1,19 +1,22 @@
 package backend.Aplicacion.dto.estudiante.registrar;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 public record RegistrarEstudianteDTORequest(
-        @NotNull(message = "Nombre es requerido")
+        @NotBlank(message = "Nombre es requerido")
+        @Size(max = 100, message = "Nombre demasiado largo")
         String nombre,
 
-        @NotNull(message = "Apellido es requerido")
+        @NotBlank(message = "Nombre es requerido")
+        @Size(max = 100, message = "Apellido demasiado largo")
         String apellido,
 
-        @NotNull(message = "Email es requerido")
+        @NotBlank(message = "Email es requerido")
+        @Email(message = "Email inválido")
+        @Size(max = 255, message = "Email demasiado largo")
         String email,
 
-        @NotNull(message = "Dni es requerido")
+        @Positive(message = "DNI inválido")
         int dni
 ) {
 }

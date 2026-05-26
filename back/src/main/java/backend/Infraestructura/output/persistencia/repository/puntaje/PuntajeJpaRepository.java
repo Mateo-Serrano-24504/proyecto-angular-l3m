@@ -5,6 +5,7 @@ import backend.Infraestructura.output.persistencia.entity.puntaje.PuntajeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -19,4 +20,16 @@ public interface PuntajeJpaRepository extends JpaRepository<PuntajeEntity,Long>,
         GROUP BY m.nombre
     """)
     List<PromedioPuntaje> obtenerPromedios();
+
+    @Query("""
+        SELECT
+            m.nombre as label,
+            AVG(p.valor) as promedio
+        FROM PuntajeEntity p
+        JOIN p.materia m
+        WHERE p.activo = true
+          AND p.estudiante.id = :id
+        GROUP BY m.nombre
+    """)
+    List<PromedioPuntaje> obtenerPromedios(@Param("id") Long id);
 }
