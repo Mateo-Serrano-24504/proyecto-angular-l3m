@@ -1,8 +1,19 @@
+<div class="chart-actions">
+  <label>
+    <input
+      type="checkbox"
+      (change)="toggleChartType()"
+    />
+
+    Usar gráfico de barras
+  </label>
+</div>
+
 @if (hasData()) {
   <p-chart
-    type="radar"
+    [type]="chartType()"
     [data]="data()"
-    [options]="options"
+    [options]="chartType() === 'radar' ? radarOptions : barOptions"
   ></p-chart>
 } @else {
   <p>No hay datos disponibles</p>

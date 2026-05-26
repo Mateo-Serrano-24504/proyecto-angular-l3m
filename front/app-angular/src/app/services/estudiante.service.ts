@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Alumno } from "../views/tablaAlumnos/service/alumnoServis";
+import { Alumno } from "./alumno.service";
 
 export interface ChartResponse{
     labels : string[];
@@ -25,7 +25,7 @@ export class EstudiantesService{
 
     constructor(private http: HttpClient){}
 
-    getChart(id: Number | null):Observable<ChartResponse> {
+    getChart(id: Number | null): Observable<ChartResponse> {
       const idField = id == null ? "" : `/${id}`;
       return this.http.get<ChartResponse>(`${this.apiUrl}/puntajes/chart` + idField)
     }

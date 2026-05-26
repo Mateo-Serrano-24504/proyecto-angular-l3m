@@ -1,7 +1,7 @@
 import { Component, effect, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { Alumno, AlumnoService } from '../../views/tablaAlumnos/service/alumnoServis';
+import { Alumno, AlumnoService } from '../../services/alumno.service';
 
 import { z } from 'zod';
 

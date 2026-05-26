@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 export interface Materia {
   id: number;
@@ -27,22 +26,18 @@ export class MateriaService {
 
   constructor(private http: HttpClient) {}
 
-  getMaterias(page : number, size: number): Observable<PaginaMaterias> {
+  obtenerMaterias(page : number, size: number): Observable<PaginaMaterias> {
     return this.http.get<PaginaMaterias>(`${this.BASE_URL}?index=${page}&size=${size}`);
   }
-
-  getAllMaterias(): Observable<Materia>{
-    return this.http.get<Materia>(`${this.BASE_URL}/todos`);
+  obtenerTodasLasMaterias(): Observable<Materia[]>{
+    return this.http.get<Materia[]>(`${this.BASE_URL}/todos`);
   }
-
   crearMateria(materia: MateriaRequest): Observable<number> {
     return this.http.post<number>(this.BASE_URL, materia);
   }
-
   actualizarMateria(id: number, materia: Materia): Observable<Materia> {
     return this.http.put<Materia>(`${this.BASE_URL}/${id}`, materia);
   }
-
   eliminarMateria(id: number): Observable<void> {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`);
   }

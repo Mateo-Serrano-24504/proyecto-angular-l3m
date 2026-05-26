@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Materia, MateriaService } from './service/materiaService';
+import { Materia, MateriaService } from '../../services/materia.service';
 import { PageNav } from '../../components/page-nav/page-nav';
 
 @Component({
@@ -39,7 +39,7 @@ export class Materias implements OnInit {
   }
 
   callPage() {
-    this.materiaService.getMaterias(this.pagina(), this.longitudPagina()).subscribe((res) => {
+    this.materiaService.obtenerMaterias(this.pagina(), this.longitudPagina()).subscribe((res) => {
       this.materias.set(res.items);
       this.totalPaginas.set(res.pageCount);
       this.scrollToTop();

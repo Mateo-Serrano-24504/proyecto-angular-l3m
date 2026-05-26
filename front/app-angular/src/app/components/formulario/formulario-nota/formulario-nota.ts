@@ -1,8 +1,9 @@
 import { Component, input, output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { Alumno } from '../../../views/tablaAlumnos/service/alumnoServis';
-import { Materia, PuntajeService } from '../../../views/tablaAlumnos/service/puntajesService';
+import { Alumno } from '../../../services/alumno.service';
+import { MateriaService, Materia } from '../../../services/materia.service'
+import { PuntajeService } from '../../../services/puntajes.service';
 
 @Component({
   selector: 'app-formulario-nota',
@@ -24,6 +25,7 @@ export class FormularioNota implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private materiaService: MateriaService,
     private puntajeService: PuntajeService
   ) {
     this.form = this.fb.group({
@@ -37,7 +39,7 @@ export class FormularioNota implements OnInit {
   }
 
   cargarMaterias() {
-    this.puntajeService.obtenerMaterias().subscribe({
+    this.materiaService.obtenerTodasLasMaterias().subscribe({
       next: (materias) => {
         this.materias = materias;
       },

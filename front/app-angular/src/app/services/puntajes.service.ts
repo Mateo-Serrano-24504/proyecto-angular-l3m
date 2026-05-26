@@ -13,9 +13,9 @@ export interface Puntaje {
   valor: number;
 }
 
-export interface Materia {
-  id: number;
-  nombre: string;
+export interface ChartResponse{
+    labels : string[];
+    data: number[];
 }
 
 @Injectable({
@@ -29,7 +29,8 @@ export class PuntajeService {
   registrarPuntaje(puntaje: RegistrarPuntaje): Observable<Puntaje> {
     return this.http.post<Puntaje>(this.BASE_URL, puntaje);
   }
-  obtenerMaterias(): Observable<Materia[]> {
-  return this.http.get<Materia[]>('http://localhost:8080/api/materias/todos');
+  obtenerChart(id: Number | null): Observable<ChartResponse> {
+    const idField = id == null ? "" : `/${id}`;
+    return this.http.get<ChartResponse>(`${this.BASE_URL}/chart` + idField)
   }
 }

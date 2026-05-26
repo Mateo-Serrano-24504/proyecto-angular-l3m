@@ -1,5 +1,5 @@
 import { Component, signal, OnInit, computed } from '@angular/core';
-import { AlumnoService, Alumno } from '../tablaAlumnos/service/alumnoServis';
+import { AlumnoService, Alumno } from '../../services/alumno.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
 import { DatePipe } from '@angular/common';

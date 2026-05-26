@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, signal, viewChild } from '@angular/core'
 import { TableModule } from 'primeng/table';
 import { Router, RouterLink } from "@angular/router";
 import { Formulario } from '../../components/formulario/formulario';
-import { AlumnoService, Alumno } from './service/alumnoServis';
+import { AlumnoService, Alumno } from '../../services/alumno.service';
 import { PageNav } from '../../components/page-nav/page-nav';
 import { FormularioNota } from '../../components/formulario/formulario-nota/formulario-nota';
 
