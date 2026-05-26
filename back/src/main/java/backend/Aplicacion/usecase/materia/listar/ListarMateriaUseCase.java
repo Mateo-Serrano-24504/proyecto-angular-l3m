@@ -2,12 +2,16 @@ package backend.Aplicacion.usecase.materia.listar;
 
 import backend.Aplicacion.dto.materia.MateriaDTOResponse;
 import backend.Aplicacion.mapper.materia.MateriaDtoMapper;
+import backend.Aplicacion.shared.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
+import backend.Aplicacion.shared.pagination.dto.PageResponseDTO;
+import backend.Aplicacion.shared.pagination.mapper.PaginationDtoMapper;
 import backend.Dominio.puertos.in.materia.ListarMateriaPort;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +21,12 @@ public class ListarMateriaUseCase implements ListarMateriaPort {
     private final MateriaDtoMapper mapper;
 
     @Override
-    public List<MateriaDTOResponse> ejecutar() {
-        return this.repository.listar().stream().map(mapper::toDto).toList();
+    public PageResponseDTO<MateriaDTOResponse> ejecutar(PageRequestDTO dto) {
+        PageRequest request = PaginationDtoMapper.toPageRequest(dto);
+        return PaginationDtoMapper.toPageResponseDTO(
+                this.repository
+                        .listar(request)
+                        .map(mapper::toDto)
+        );
     }
 }
