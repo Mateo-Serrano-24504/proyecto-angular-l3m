@@ -2,6 +2,7 @@ package backend.Infraestructura.input.controller;
 
 import backend.Aplicacion.dto.materia.MateriaDTOResponse;
 import backend.Aplicacion.dto.materia.MateriaDTORequest;
+import backend.Aplicacion.shared.pagination.dto.PageRequestDTO;
 import backend.Dominio.puertos.in.materia.ActualizarMateria;
 import backend.Dominio.puertos.in.materia.DesactivarMateria;
 import backend.Dominio.puertos.in.materia.ListarMateriaPort;
@@ -36,8 +37,8 @@ public class MateriaController {
     }
 
     @GetMapping
-    public List<MateriaDTOResponse> listar() {
-        return this.listarMateriasPort.ejecutar();
+    public List<MateriaDTOResponse> listar(PageRequestDTO dto) {
+        return this.listarMateriasPort.ejecutar(dto);
     }
 
     @PutMapping("/{id}")

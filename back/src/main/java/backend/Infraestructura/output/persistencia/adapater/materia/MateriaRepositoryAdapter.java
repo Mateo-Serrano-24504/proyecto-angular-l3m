@@ -1,13 +1,21 @@
 package backend.Infraestructura.output.persistencia.adapater.materia;
 
 import backend.Aplicacion.shared.exception.NotFoundException;
+import backend.Aplicacion.shared.pagination.PageRequest;
+import backend.Aplicacion.shared.pagination.PageResponse;
+import backend.Infraestructura.output.persistencia.entity.estudiante.EstudianteEntity;
 import backend.Infraestructura.output.persistencia.mapper.materia.MateriaMapper;
 import backend.Dominio.modelo.MateriaModel;
 import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import backend.Infraestructura.output.persistencia.entity.materia.MateriaEntity;
+import backend.Infraestructura.output.persistencia.mapper.pagination.PaginationMapper;
 import backend.Infraestructura.output.persistencia.repository.materia.MateriaJpaRepository;
+import backend.Infraestructura.output.persistencia.specification.EstudianteActivoSpecification;
 import backend.Infraestructura.output.persistencia.specification.MateriaActivaSpecification;
+import backend.Infraestructura.output.persistencia.specification.factory.FilterRequestSpecificationBuilderFactory;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +29,8 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
 
     private final MateriaJpaRepository materiaJpaRepository;
     private final MateriaMapper mapper;
+    private final FilterRequestSpecificationBuilderFactory<MateriaEntity> factory;
+
 
     @Override
     public MateriaModel guardar(MateriaModel materia) {
@@ -38,12 +48,20 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
     }
 
     @Override
-    public List<MateriaModel> listar() {
-        return this.materiaJpaRepository
-                .findAll(MateriaActivaSpecification.isActive())
-                .stream()
-                .map(mapper::toModel)
-                .toList();
+    public PageResponse<MateriaModel> listar(PageRequest request) {
+        Pageable pageable = PaginationMapper.toPageable(request);
+        Specification<MateriaEntity> specification = MateriaActivaSpecification
+                .isActive()
+                .and(this.factory.build(request.filterRequests()));
+        return PaginationMapper.toPageResponse(
+                this.materiaJpaRepository
+                        .findAll(
+                                specification,
+                                pageable
+                        )
+                        .map(mapper::toModel),
+                request
+        );
     }
 
     @Override
