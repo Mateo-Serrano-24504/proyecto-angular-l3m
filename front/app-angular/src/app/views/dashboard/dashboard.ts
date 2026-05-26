@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ChartRadar} from './components/chart/chart';
-import { ChartModule } from "primeng/chart";
-import { Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,12 +8,25 @@ import { Router, RouterLink } from "@angular/router";
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {
- constructor(private router: Router) {}
+export class Dashboard implements OnInit {
+  alumnoId = signal<number | null>(null);
 
- 
-  navigateToHome(){
-    this.router.navigate([''])
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      const id = params.get('id');
+
+      this.alumnoId.set(
+        id ? Number(id) : null
+      );
+    });
   }
 
+  navigateToHome() {
+    this.router.navigate([''])
+  }
 }

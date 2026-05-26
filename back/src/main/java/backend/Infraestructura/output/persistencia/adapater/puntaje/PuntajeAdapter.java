@@ -1,7 +1,9 @@
 package backend.Infraestructura.output.persistencia.adapater.puntaje;
 
+import backend.Aplicacion.dto.puntaje.ObtenerPuntajesDTOResponse;
 import backend.Aplicacion.shared.exception.NotFoundException;
 import backend.Infraestructura.output.persistencia.mapper.puntaje.PuntajeMapper;
+import backend.Infraestructura.output.persistencia.projection.PromedioPuntaje;
 import backend.Infraestructura.output.persistencia.specification.PuntajeTieneEstudianteIdSpecification;
 import backend.Dominio.modelo.PuntajeModel;
 import backend.Dominio.puertos.out.puntaje.PuntajeRepositoryPort;
@@ -51,6 +53,20 @@ public class PuntajeAdapter implements PuntajeRepositoryPort {
                 .stream()
                 .map(mapper::toModel)
                 .toList();
+    }
+
+    @Override
+    public ObtenerPuntajesDTOResponse obtener() {
+        var promedios = puntajeJpaRepository.obtenerPromedios();
+        return new ObtenerPuntajesDTOResponse(
+                promedios.stream()
+                        .map(PromedioPuntaje::getLabel)
+                        .toList(),
+
+                promedios.stream()
+                        .map(p -> p.getPromedio().intValue())
+                        .toList()
+        );
     }
 
     @Override

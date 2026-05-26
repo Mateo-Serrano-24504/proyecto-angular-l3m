@@ -62,6 +62,17 @@ public class MateriaRepositoryAdapter implements MateriaRepositoryPort {
     }
 
     @Override
+    public List<MateriaModel> listarTodos() {
+        Specification<MateriaEntity> specification = MateriaActivaSpecification
+                .isActive();
+        return this.materiaJpaRepository
+                .findAll(specification)
+                .stream()
+                .map(mapper::toModel)
+                .toList();
+    }
+
+    @Override
     public MateriaModel buscarPorId(Long id) {
         return this.materiaJpaRepository
                 .findById(id)

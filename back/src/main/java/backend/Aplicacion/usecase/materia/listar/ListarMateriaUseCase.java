@@ -11,6 +11,7 @@ import backend.Dominio.puertos.out.materia.MateriaRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -21,12 +22,21 @@ public class ListarMateriaUseCase implements ListarMateriaPort {
     private final MateriaDtoMapper mapper;
 
     @Override
-    public PageResponseDTO<MateriaDTOResponse> ejecutar(PageRequestDTO dto) {
+    public PageResponseDTO<MateriaDTOResponse> listarPagina(PageRequestDTO dto) {
         PageRequest request = PaginationDtoMapper.toPageRequest(dto);
         return PaginationDtoMapper.toPageResponseDTO(
                 this.repository
                         .listar(request)
                         .map(mapper::toDto)
         );
+    }
+
+    @Override
+    public List<MateriaDTOResponse> listarTodos() {
+        return this.repository
+                .listarTodos()
+                .stream()
+                .map(mapper::toDto)
+                .toList();
     }
 }

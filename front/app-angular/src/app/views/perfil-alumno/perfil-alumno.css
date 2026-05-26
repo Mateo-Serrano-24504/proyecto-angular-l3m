@@ -1,0 +1,12 @@
+.profile-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.back-btn {
+    justify-self: start;
+}
+
+.metricas-btn {
+    justify-self: end;
+}
