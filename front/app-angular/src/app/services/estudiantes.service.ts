@@ -21,14 +21,14 @@ export interface PuntajeEstudiante {
 })
 
 export class EstudiantesService{
-    private apiUrl = 'http://localhost:8080/api/students'
+    private apiUrl = 'http://localhost:8080/api'
 
     constructor(private http: HttpClient){}
 
     getChart():Observable<ChartResponse> {
-        return this.http.get<ChartResponse>(`${this.apiUrl}/chart`)
+        return this.http.get<ChartResponse>(`${this.apiUrl}/puntajes/chart`)
     }
 
     getEstudiantePorId(id: number): Observable<Alumno> {
-    return this.http.get<Alumno>(`${this.apiUrl}/${id}`);}
+    return this.http.get<Alumno>(`${this.apiUrl}/students/${id}`);}
 }
