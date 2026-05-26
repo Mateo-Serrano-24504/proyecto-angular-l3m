@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, PLATFORM_ID, inject, input, signal } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, computed, inject, input, signal } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { EstudiantesService } from '../../../../services/estudiantes.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -15,6 +15,9 @@ export class ChartRadar implements OnInit {
   data = signal<any>({});
   options: any;
   platformId = inject(PLATFORM_ID);
+  hasData = computed(() =>
+    !!this.data()?.datasets?.[0]?.data?.length
+  );
 
   constructor(
     private studentService: EstudiantesService
